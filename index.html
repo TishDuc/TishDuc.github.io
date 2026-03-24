@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -7,34 +8,145 @@
     <style>
         body {
             font-family: Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ecece3;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #444;
+            font-weight: 300;
+            font-size: 28px;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;   /* controls width */
-            margin: 0 auto;     /* centers horizontally */
-            text-align: center; /* centers text */
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        iframe {
-            margin: 20px 0;
+        a {
+            display: block;
+            margin: 15px auto;
+            padding: 12px 24px;
+            width: 220px;
+            border: 2px solid #d3d3d3;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
-        img {
-            max-width: 100%;
+        a:hover {
+            border-color: #bfe3a3;
+            background-color: #f0fae6;
+            color: #1b5e4b;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
     </style>
 </head>
 
 <body>
+    <canvas id="particles"></canvas>
 
     <div class="container">
-        <h1>Welcome</h1>
-
+        <h1>Yeha there, choose your <br> favorite page to look at:</h1>
         <a href="Week7.html">Week 7</a>
         <a href="Assignment_2.html">Assignment 2</a>
     </div>
 
-</body>
+    <script>
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
 
+        let particles = [];
+        const numParticles = 800;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.2;
+        
+                // choose between two greens
+                const colors = [
+                [200, 240, 170], // light green
+                [100, 140, 60],  // darker green
+
+                [255, 255, 255], // white (sparkle highlight)
+
+                [255, 235, 150], // soft sunny yellow
+                [255, 215, 120]  // light warm orange
+                ];
+
+            const c = colors[Math.floor(Math.random() * colors.length)];
+            this.color = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${this.opacity})`;
+            }
+
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                    }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
+</body>
 
 </html>
