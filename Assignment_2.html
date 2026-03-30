@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Observing San Fransisco's crime rates 
+        during the COVID pandemic and lockdown
+    </title>
+
+    <style>
+        .title {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .text {
+            font-size: 15 px;
+            line-height: 2;
+            text-align: left;
+            max-width: 700px;
+            margin: 10 auto;
+            color: #2f2f2f;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #ecece3;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #444;
+            font-weight: 300;
+            font-size: 28px;
+            line-height: 1.6;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 40px 20px;
+        }
+
+        a {
+            display: block;
+            margin: 15px auto;
+            padding: 12px 24px;
+            width: 320px;
+            border: 2px solid #d3d3d3;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        a:hover {
+            border-color: #bfe3a3;
+            background-color: #f0fae6;
+            color: #1b5e4b;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        section {
+            margin-bottom: 60px;
+            background-color: rgba(255,255,255,0.7);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        img, iframe {
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--
+    //Things we need:
+
+    1 - intro 
+    explain SF crime  "Don't assume your reader knows what "Personal Focus Crimes" are or where the data comes from"
+
+    2 - Format:
+    Use the "Magazine Genre"from the Segel & Heer paper: a single web page that reads linearly from top to bottom
+    Text and visualizations alternate — the author guides the reader through a specific narrative
+
+    3 - Visualizations
+            - 3 visualizations exactly
+            - Each should be a different type:
+                    1. "One static chart": a time-series, bar chart, or one of the fancier types you've learned (calendar plot, polar bar chart, box plot, etc.) 
+                    whatever best supports your story. Export it as a PNG or SVG using `plt.savefig()`.
+                    2. "One map": a choropleth (Plotly), a Folium scatter/heatmap, or a `HeatMapWithTime` animation. 
+                    Export using `fig.write_html()` or `m.save()`.
+                    3. "One interactive Plotly visualization": this should contain **different data** than the exercises from Week 6. 
+                    It's a plus if it's a different *type* of interactive viz altogether (not just another bar chart with the same structure). 
+                    Export with `fig.write_html()`.
+    -->
+
+    
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+
+        <section class="title">
+            <h1>
+            San Fransisco's crime during<br> 
+            the COVID pandemic and lockdown
+            </h1>
+        </section>
+
+        <section class="text">
+            <p>Introduction
+                For our social dada analysis assignment, my team and I have chosen to have a look at San Fransisco's crime dataset.
+                For those who are unfamiliar with this dataset, it contains all reported crimes in San Fransisco from 2003 to today (it's still being updated and used) 
+                and lists details such as the time and date of the incident, district and exact location, category of crime, status of the case etc. We started off by plotting 
+                a very generic count plot, visually indicating the number of crime types per year, for example "assult counts for 2008", "burglary counts for 2012" etc. It quickly revealed a change of patterns around 2020.
+                This coincides with the unique situation of the COVID pandemis and lockdown period, which is what we decided to focus on for our analysis.
+                How does a pandemic of this size influence crime rates? What kind of changes do we see?
+            </p>
+        </section>
+
+        <section>
+            <p>Visualization 1 explanation.</p>
+            <!--
+            <img src="chart.png">
+            <iframe src="chart.html" height="400"></iframe>
+            -->
+        </section>
+
+        <section>
+            <p>Visualization 2 explanation.</p>
+            <!--
+            <iframe src="map.html" height="500"></iframe>
+            -->
+        </section>
+
+        <section>
+            <p>Visualization 3 explanation.</p>
+            <!--
+            <iframe src="interactive.html" height="600"></iframe>
+            -->
+        </section>
+
+    </div>
+
+
+    <!-- Background script -->
+    <script>
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        let particles = [];
+        const numParticles = 900;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.2;
+        
+                const colors = [
+                [188, 237, 151], // light green
+                [92, 116, 87], // dark green
+                [255, 255, 255], // white
+                [255, 167, 55], // light orange  
+                [255, 215, 96] // yellow  
+                ];
+
+                const c = colors[Math.floor(Math.random() * colors.length)];
+                this.color = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${this.opacity})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
+</body>
+</html>
