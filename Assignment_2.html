@@ -169,7 +169,7 @@
         const ctx = canvas.getContext("2d");
 
         let particles = [];
-        const numParticles = 900;
+        const numParticles = 100; // num particles
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -186,14 +186,15 @@
                 this.radius = Math.random() * 2 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.opacity = Math.random() * 0.7 + 0.2;
         
                 const colors = [
                 [188, 237, 151], // light green
                 [92, 116, 87], // dark green
-                [255, 255, 255], // white
+                // [255, 255, 255], // white
                 [255, 167, 55], // light orange  
-                [255, 215, 96] // yellow  
+                //[255, 215, 96] // yellow 
+                [240, 84, 79] // light red
                 ];
 
                 const c = colors[Math.floor(Math.random() * colors.length)];
@@ -211,16 +212,44 @@
             }
 
             draw() {
+            const spikeCount = 8;
+            const coreRadius = this.radius;
+            const spikeLength = this.radius * 1.8;
+
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.strokeStyle = this.color;
+            ctx.fillStyle = this.color;
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i < spikeCount; i++) {
+                const angle = (Math.PI * 2 / spikeCount) * i;
+                const x1 = Math.cos(angle) * coreRadius;
+                const y1 = Math.sin(angle) * coreRadius;
+                const x2 = Math.cos(angle) * spikeLength;
+                const y2 = Math.sin(angle) * spikeLength;
+
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(x2, y2, this.radius * 0.35, 0, Math.PI * 2);
                 ctx.fill();
             }
-        }
 
-        for (let i = 0; i < numParticles; i++) {
-            particles.push(new Particle());
+            ctx.beginPath();
+            ctx.arc(0, 0, coreRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
         }
+            }
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
