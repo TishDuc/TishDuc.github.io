@@ -7,6 +7,10 @@
     </title>
 
     <style>
+        :root {
+            --main-width: 900px;
+        }
+
         .title {
             background-color: transparent;
             padding: 0;
@@ -16,8 +20,8 @@
             font-size: 15 px;
             line-height: 2;
             text-align: left;
-            max-width: 700px;
-            margin: 10 auto;
+            max-width: var(--main-width);
+            margin: 20 auto;
             color: #2f2f2f;
         }
 
@@ -42,7 +46,7 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: var(--main-width);
             padding: 40px 20px;
         }
 
@@ -77,9 +81,10 @@
         }
 
         section {
+            max-width: var(--main-width);
             margin-bottom: 60px;
             background-color: rgba(255,255,255,0.7);
-            padding: 20px;
+            padding: 20px 50px;
             border-radius: 8px;
         }
 
@@ -169,7 +174,7 @@
         const ctx = canvas.getContext("2d");
 
         let particles = [];
-        const numParticles = 100; // num particles
+        const numParticles = 50; // num particles
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -183,13 +188,13 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.radius = Math.random() * 2 + 1;
+                this.radius = Math.random() * 4 + 2;
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.7 + 0.2;
+                this.opacity = Math.random() * 0.4 + 0.2;
         
                 const colors = [
-                [188, 237, 151], // light green
+                [176, 207, 116], // light green
                 [92, 116, 87], // dark green
                 // [255, 255, 255], // white
                 [255, 167, 55], // light orange  
