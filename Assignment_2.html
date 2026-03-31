@@ -134,16 +134,24 @@
 
         <section class="text">
             <p>Introduction
-                For our social dada analysis assignment, my team and I have chosen to have a look at San Fransisco's crime dataset.
-                For those who are unfamiliar with this dataset, it contains all reported crimes in San Fransisco from 2003 to today (it's still being updated and used) 
-                and lists details such as the time and date of the incident, district and exact location, category of crime, status of the case etc. We started off by plotting 
-                a very generic count plot, visually indicating the number of crime types per year, for example "assult counts for 2008", "burglary counts for 2012" etc. It quickly revealed a change of patterns around 2020.
-                This coincides with the unique situation of the COVID pandemis and lockdown period, which is what we decided to focus on for our analysis.
-                How does a pandemic of this size influence crime rates? What kind of changes do we see?
+            San Francisco has a crime registration database that is publicly accessible and is the center of this analysis. 
+            For those who are unfamiliar with this dataset, it contains millions of reported crime incidents that occurred 
+            in the city of San Francisco from 2003 to present day. It is still in use today and regularly updated. 
+            This list details the time and date of the incident, the district and exact location, category of crime, status
+            of the case, reference number etc. Since the raw data originally has close to 100 different type of crime 
+            categories, we've simplifies the task by regrouping some and focusing on the following eight: "assault", "burglary",
+            "weapons", "vandalism", "traffic", "fraud", "drug offenses", "sex offenses".  
+            This following analysis is based on our simplified focused crime data.
+
+            Our first visual overview of the data was a multi-line time series plot showing yearly crime counts of our eight 
+            selected “crime categories” from 2003 to 2025. The year 2026 is excluded since, as of the writing of this analysis, 
+            it is still an incomplete year. This plot reveals a clear change of crime rate and pattern around the year 2020. 
+            This analysis takes a closer look at this shift in the data.
+
             </p>
         </section>
 
-        <section>
+        <section class="text">
             <img src="visualizations/monthly_crimes_covid.svg"/>
             <p>Visualization 1 explanation.
                 Here is the plot in question, though filtered and simplified to only included a selected number of "crime types". We've also and focused it around the time period of interest, mid 2019 to. mid 2021.
@@ -152,7 +160,7 @@
                 
                 Higher Burglary counts? during a lockdown? At first we thought that odd. Why would anyone pick this time to break into people's homes when everyone is forced to be home? 
                 Yet Lockdown also means offices, stores, car parks, public spaces are totally empty, and we suspect this explains the rise in burglary counts.
-                
+
             </p>
             <!--
             <iframe src="chart.html" height="400"></iframe>
@@ -160,6 +168,7 @@
         </section>
 
         <section>
+            <iframe src="visualizations/sf_crime_heatmap.html" height="600"></iframe>
             <p>Visualization 2 explanation.</p>
             <!--
             <iframe src="map.html" height="500"></iframe>
