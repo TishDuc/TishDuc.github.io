@@ -132,8 +132,10 @@
             </h1>
         </section>
 
+        <!-- Introduction and context
+         -->
         <section class="text">
-            <p>Introduction
+            <p> 
             San Francisco has a crime registration database that is publicly accessible and is the center of this analysis. 
             For those who are unfamiliar with this dataset, it contains millions of reported crime incidents that occurred 
             in the city of San Francisco from 2003 to present day. It is still in use today and regularly updated. 
@@ -154,12 +156,21 @@
         <section class="text">
             <img src="visualizations/monthly_crimes_covid.svg"/>
             <p>Visualization 1 explanation.
-                Here is the plot in question, though filtered and simplified to only included a selected number of "crime types". We've also and focused it around the time period of interest, mid 2019 to. mid 2021.
-                Looking at the "burglary counts", the orange curve, we observe a clear rise in count from March 2020 onwards, while other crimes like "assult", "fraud", "Drug offense" dip slightlyt but generally remain the same 
-                before and after the lockdown of March 2020.
-                
-                Higher Burglary counts? during a lockdown? At first we thought that odd. Why would anyone pick this time to break into people's homes when everyone is forced to be home? 
-                Yet Lockdown also means offices, stores, car parks, public spaces are totally empty, and we suspect this explains the rise in burglary counts.
+            Here is a time series plot, yet, this time, focused on the time period of interest, from mid 2019 to mid 2021. 
+            Looking at the "burglary” crime counts, the orange curve, we observe a clear rise in occurrences from March 2020 
+            onwards. In fact, according to the National Library of Medicine (https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/), 
+            the first mandatory COVID Lockdown was announced on March 16th in the San Francisco Bay Area. From there onwards 
+            people were sent to stay home leaving offices, shops, car parks, and public spaces unattended, which we suspect 
+            explains this observed raise in burglary counts. <br>
+
+            We cross references our hypothesis across the internet and found several sources citing incidents and reports of 
+            theft. This article from ABC News, written early April 2020, reports raise in break ins, particularly in small local 
+            businesses and restaurants. "They took toilet paper, garbage bags, any household items we had and our Clorox wipes. 
+            Our cleaning supplies". <br>
+
+            This article from BCS, published in January 2021, describes how small business owners were particularly hit by the 
+            robberies " we literally don't have any more income coming in, we are not able to open, and now with this extra 
+            expense, it's definitely harsh for us." (ref: https://www.cbsnews.com/sanfrancisco/news/pandemic-ravaged-san-francisco-small-businesses-hit-with-burglaries-and-vandalism/).
 
             </p>
             <!--
@@ -214,9 +225,9 @@
                 [176, 207, 116], // light green
                 [92, 116, 87], // dark green
                 // [255, 255, 255], // white
-                [255, 167, 55], // light orange  
+                //[255, 167, 55], // light orange  
                 //[255, 215, 96] // yellow 
-                [240, 84, 79] // light red
+                //[240, 84, 79] // light red
                 ];
 
                 const c = colors[Math.floor(Math.random() * colors.length)];
