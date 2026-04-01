@@ -127,7 +127,7 @@
 
         <section class="title">
             <h1>
-            San Francisco's crime during<br> 
+            Crime in San Francisco during<br>
             the COVID pandemic and lockdown
             </h1>
         </section>
@@ -136,7 +136,24 @@
          -->
         <section class="text">
             <p> 
-            San Francisco has a crime registration database that is publicly accessible and is the center of this analysis. 
+            In 2020, something unprecedented happened. You probably remember it. News had been spreading since 2019 of a new,
+            highly infectious virus emerging in China, and in early 2020, the situation became so serious that the whole world
+            practically shut down, almost from one day to the other. Schools, offices and bars were closed, people were sent home,
+            and the streets were left empty. You could still go to the grocery store or the pharmacy, but you had to wear a face
+            mask and respect social distancing. In a way, it was the biggest social experiment in history.
+            </p>
+            <p>
+            So, what happens to crime in a situation like that? When bars and nightclubs shut down and festivals are canceled,
+            we might expect to see fewer drug offenses, assaults, and sex offenses. When people are forced to stay home, we
+            might expect fewer traffic violations. On the other hand, some types of crime might be completely unaffected, and
+            some might even increase during a lockdown. Can you guess which?
+            </p>
+            <p>
+            In this article, we'll take a look at how crime patterns changed during the COVID lockdown using San Francisco as a
+            case study, and try to understand the underlying causes. Let's dive into the data!
+            </p>
+            <!--
+            San Francisco has a crime registration database that is publicly accessible and is the center of this analysis.
             For those who are unfamiliar with this dataset, it contains millions of reported crime incidents that occurred 
             in the city of San Francisco from 2003 to present day. It is still in use today and regularly updated. 
             This list details the time and date of the incident, the district and exact location, category of crime, status
@@ -149,22 +166,27 @@
             selected “crime categories” from 2003 to 2025. The year 2026 is excluded since, as of the writing of this analysis, 
             it is still an incomplete year. This plot reveals a clear change of crime rate and pattern around the year 2020. 
             This analysis takes a closer look at this shift in the data.
-
-            </p>
+            -->
         </section>
 
         <section class="text">
+            <p>
+                First, here's a coarse overview of crime from July 2019, well before the lockdown, until June 2021. Since the
+                raw data has close to 100 different crime categories, we've simplified it and selected a few to display. We've
+                also marked March 2020 with a vertical line, which is when the first mandatory COVID lockdown was announced in
+                San Francisco according to the National Library of Medicine (https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/).
+            </p>
             <img src="visualizations/monthly_crimes_covid.svg"/>
             <p>
-            Here is a time series plot focused on the time period of interest, from mid 2019 to mid 2021. 
-            Looking at the "burglary” crime counts, the orange curve, we observe a clear rise in occurrences from March 2020 
-            onwards. In fact, according to the National Library of Medicine (https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/), 
-            the first mandatory COVID Lockdown was announced on March 16th in the San Francisco Bay Area. From there onwards 
-            people were sent to stay home leaving offices, shops, car parks, and public spaces unattended, which we suspect 
-            explains this observed raise in burglary counts. <br>
+            See that orange line right after the lockdown begins? Wow, that's a lot of burglaries! Over 1000 were reported in
+            May 2020 alone, which is roughly twice as many as in a typical pre-COVID month. Most other types of crime are going
+            down, but burglaries are shooting up. What's going on? <br>
+            Let's think about it for a second. Everyone's been sent home for the lockdown, so it's probably not residences that
+            are being burglarized. But offices, parking lots, shops, and warehouses are sitting unattended all over the city.
+            Easy targets for an enterprising burglar.
             <br>
-            We cross references our hypothesis across the internet and found several sources citing incidents and reports of 
-            theft. <br>
+            That explanation makes a lot of sense, but we're going to need some more evidence to support it.
+            Let's look at some news articles and research papers published during the pandemic.
 
             This article from NBC Bay Area News, published early April 2020, only two weeks after the first lockdown, 
             reports an increase in shoplifting and risky behaviors in stores. "Employees and customers at a San Francisco 
