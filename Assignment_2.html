@@ -68,6 +68,26 @@
         }
 
         a {
+            color: #1b5e4b;
+            text-decoration: underline;
+            display: inline;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            border: none;
+            border-radius: 0;
+            font-size: inherit;
+            background-color: transparent;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #0f4a3a;
+            text-decoration: underline;
+        }
+
+        /* Optional: use class="button-link" if you want the old button-style links. */
+        .button-link {
             display: block;
             margin: 15px auto;
             padding: 12px 24px;
@@ -77,11 +97,10 @@
             text-decoration: none;
             color: #333;
             font-size: 18px;
-            transition: all 0.2s ease;
             background-color: rgba(255, 255, 255, 0.7);
         }
 
-        a:hover {
+        .button-link:hover {
             border-color: #bfe3a3;
             background-color: #f0fae6;
             color: #1b5e4b;
@@ -191,7 +210,7 @@
                 First, here's a coarse overview of crime from July 2019, well before the lockdown, until June 2021. Since the
                 raw data has close to 100 different crime categories, we've simplified it and selected a few to display. We've
                 also marked March 2020 with a vertical line, which is when the first mandatory COVID lockdown was announced in
-                San Francisco according to the National Library of Medicine (https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/).
+                San Francisco according to the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/">National Library of Medicine</a>.
             </p>
             <!-- Graph 1
                 -->
@@ -200,13 +219,17 @@
             <p>
             See that orange line right after the lockdown begins? Wow, that's a lot of burglaries! Over 1000 were reported in
             May 2020 alone, which is roughly twice as many as in a typical pre-COVID month. Most other types of crime are going
-            down, but burglaries are shooting up. What's going on? <br>
+            down, but burglaries are shooting up. What's going on?
+            </p>
+            <p>
             Let's think about it for a second. Everyone's been sent home for the lockdown, so it's probably not residences that
             are being burglarized. But offices, parking lots, shops, and warehouses are sitting unattended all over the city.
             Easy targets for an enterprising burglar.
-            <br>
+            </p>
+            <p>
             That explanation makes a lot of sense, but we're going to need some more evidence to support it.
             Let's look at some news articles and research papers published during the pandemic.
+<<<<<<< HEAD
             
             <a href="https://www.nbcbayarea.com/investigations/shoplifting-risky-behavior-reach-new-heights-during-pandemic-customers-and-employees-at-sf-walgreens-say/2265713/" target="_blank">
                 This article from NBC Bay Area News
@@ -235,10 +258,35 @@
             which bring us to our second visualization. 
             Can we also finf, withour data, that commertial arear were particularly affected by this raise in burglary?
 
+=======
             </p>
-            <!--
-            <iframe src="chart.html" height="400"></iframe>
-            -->
+            <p>
+            <a href="https://www.nbcbayarea.com/investigations/shoplifting-risky-behavior-reach-new-heights-during-pandemic-customers-and-employees-at-sf-walgreens-say/2265713/">
+            This article</a> from NBC Bay Area News, published early April 2020, only two weeks after the first lockdown,
+            reports an increase in shoplifting and risky behaviors in stores. "Employees and customers at a San Francisco 
+            Walgreens are calling for additional staff, security, and protective equipment during the COVID-19 pandemic, 
+            saying shoplifting and dangerous behavior inside the store have reached new heights during the city's weeks-long stay-at-home order."
+            </p>
+            <p>
+            Ten months after the first lockdown:
+            <a href="https://www.cbsnews.com/sanfrancisco/news/pandemic-ravaged-san-francisco-small-businesses-hit-with-burglaries-and-vandalism/">
+            This article</a> from BCS, published in January 2021, reports a rise in break-ins, particularly in small local
+            businesses under the Lockdown. "Burglaries have gone up 111% in the neighborhood during the pandemic, compared to 
+            the same period the year prior".
+            </p>
+            <p>
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9387408/">
+            This paper</a> published in August 2022, analyzing theft and criminal patterns in San Francisco, notes that commercial zones were
+            indeed an easy target. "Several studies have found declines in residential burglary and an increase in commercial
+            burglary following COVID-19 lockdown orders". "Mixed land use areas may have a higher risk of commercial burglary because 
+            employees and customers were no longer present to act as capable guardians as businesses were forced to be closed during 
+            the lockdown periods".
+>>>>>>> refs/remotes/origin/main
+            </p>
+            <p>
+            Which brings us to our second visualization.
+            Can we also find, with our data, that commertial areas were particularly affected by this rise in burglary?
+            </p>
         </section>
 
         <section>
