@@ -57,6 +57,10 @@
 
         .caption {
             text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+            margin-top: 8px;
         }
 
         .references {
@@ -191,7 +195,10 @@
             </p>
             <p>
             In this article, we'll take a look at how crime patterns changed during the COVID lockdown using San Francisco as a
-            case study, and try to understand the underlying causes. Let's dive into the data!
+            case study, and try to understand the underlying causes. We'll be using the publicly available crime data from the
+            San Francisco Police Department, which you can find
+            <a href="https://data.sfgov.org/browse?category=Public%20Safety&sortBy=relevance&page=1&pageSize=20">here</a>.
+            Let's dive in!
             </p>
             <!--
             San Francisco has a crime registration database that is publicly accessible and is the center of this analysis.
@@ -218,6 +225,10 @@
                 to the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7808609/">National Library of Medicine</a>.
             </p>
             <img src="visualizations/monthly_crimes_covid.svg"/>
+            <p class="caption">
+                Monthly crime counts in San Francisco from July 2019 to June 2021, with the start of the COVID lockdown marked in orange.
+                Notice the spike in burglaries right after the lockdown begins, while most other crime categories are going down.
+            </p>
             <p>
             See that orange line right after the lockdown begins? That's a lot of burglaries! Over 1000 were reported in
             May 2020 alone, which is roughly twice as many as in a typical pre-COVID month. Most other types of crime are going
@@ -254,10 +265,8 @@
             Can we also find, with our data, that commercial areas were particularly affected by this rise in burglary?
             </p>
             <iframe src="visualizations/sf_crime_heatmap.html" height="600"></iframe>
-            <p class="caption">Heat map of reported burglaries between July 2019 and June 2021</p>
-            <!--
-            <iframe src="map.html" height="500"></iframe>
-            -->
+            <p class="caption">Monthly burglary heat map in San Francisco from July 2019 to June 2021,
+                showing how reports cluster more tightly around the city center after the lockdown begins.</p>
             <p>
             What you're looking at is a heat map of monthly burglaries in San Francisco from July 2019 to June 2021.
             You'll notice the burglary locations pre-lockdown are relatively scattered across San Francisco, but after
@@ -267,7 +276,7 @@
             <p>
             Since we've mapped out every month between July 2019 and June 2021, you can see for yourself the transition 
             between March 2020 and April 2020, and observe how the center lights up in orange and red, showing the same
-            spike in burglaries in April and May 2020 that we observed in our earlier graph.
+            spike in burglaries right when the lockdown begins that we observed in our earlier graph.
             </p>
         </section>
 
@@ -278,6 +287,10 @@
             it also supports our hypothesis.
             </p>
             <iframe src="visualizations/burglary_monthly_district_plotly.html" height="600"></iframe>
+            <p class="caption">
+                Default view shows Northern, Central, Mission, and Southern districts. You can toggle the other districts on
+                from the legend to compare how burglary patterns changed during the COVID lockdown.
+            </p>
             <p>
             This time, we'll look at each individual District and how burglary counts evolved in each one of them
             over the lockdown period. The plot shows the most affected areas, but you can add others to see just how
