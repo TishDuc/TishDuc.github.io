@@ -52,6 +52,10 @@
             color: #145a3a;          /* slightly darker on hover */
         }
 
+        .caption {
+            text-align: center;
+        }
+
         h1 {
             color: #444;
             font-weight: 300;
@@ -229,7 +233,7 @@
             </p>
             <p>
             <a href="https://www.nbcbayarea.com/investigations/shoplifting-risky-behavior-reach-new-heights-during-pandemic-customers-and-employees-at-sf-walgreens-say/2265713/">
-            This article</a> from NBC Bay Area News, published early April 2020, only two weeks after the first lockdown,
+            This article from NBC Bay Area News</a>, published early April 2020, only two weeks after the first lockdown,
             reports an increase in shoplifting and risky behaviors in stores. "Employees and customers at a San Francisco 
             Walgreens are calling for additional staff, security, and protective equipment during the COVID-19 pandemic, 
             saying shoplifting and dangerous behavior inside the store have reached new heights during the city's weeks-long stay-at-home order."
@@ -237,15 +241,15 @@
             <p>
             Ten months after the first lockdown:
             <a href="https://www.cbsnews.com/sanfrancisco/news/pandemic-ravaged-san-francisco-small-businesses-hit-with-burglaries-and-vandalism/">
-            This article</a> from BCS, published in January 2021, reports a rise in break-ins, particularly in small local
+            This article from BCS</a>, published in January 2021, reports a rise in break-ins, particularly in small local
             businesses under the Lockdown. "Burglaries have gone up 111% in the neighborhood during the pandemic, compared to
             the same period the year prior".
             </p>
             <p>
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9387408/">
-            This paper</a> published in August 2022, analyzing theft and criminal patterns in San Francisco, notes that commercial zones were
+            This paper published in August 2022</a>, analyzing theft and criminal patterns in San Francisco, notes that commercial zones were
             indeed an easy target. "Several studies have found declines in residential burglary and an increase in commercial
-            burglary following COVID-19 lockdown orders". "Mixed land use areas may have a higher risk of commercial burglary because 
+            burglary following COVID-19 lockdown orders [...] Mixed land use areas may have a higher risk of commercial burglary because 
             employees and customers were no longer present to act as capable guardians as businesses were forced to be closed during 
             the lockdown periods".
             </p>
@@ -255,17 +259,50 @@
             </p>
         </section>
 
-        <section>
+        <section class="text">
             <iframe src="visualizations/sf_crime_heatmap.html" height="600"></iframe>
-            <p>Heatmap of crime reported incidents between XXXX and XXXX</p>
+            <p class="caption">Heatmap of crime reported incidents between July 2019 and June 2021</p>
             <!--
             <iframe src="map.html" height="500"></iframe>
             -->
+            <p>
+            In this section, the monthly burglaries are mapped and regrouped to form this heatmap. You'll notice the robbery 
+            locations pre-lockdown are relatively scattered across San Francisco, with an increase in counts marked in yellow 
+            in the northeast part of the map. This is the Central Business District area, Union Square, and regroups most 
+            shopping malls and high-end stores and restaurants.  
+            Since we've mapped out every month between July 2019 and June 2021, you can see for yourself the transition 
+            between March 2020 and April 2020, and observe how that same center shows colors of orange and red making that 
+            increase in counts we observed in our earlier graph. 
+
+            The most affected districts are also shown below in this third graph.
+            </p>
         </section>
 
-        <section>
-            <p>Visualization 3 explanation.</p>
+        <section class="text">
+            <p>
+            Here, we took a specific look at each individual Districts and how robbery counts evolved in each one of them 
+            over the Lockdown period. The graph shows the three most affected areas, but you can add others to see just how 
+            much these districts stand out in comparison. According to both the heatmap and the graphed data, the most 
+            affected districts are indeed Northers, Central, Mission and Southern.
+            </p>
             <iframe src="visualizations/burglary_monthly_district_plotly.html" height="600"></iframe>
+            <p>
+            Note that we still observe burglaries in residential areas close to the center, even after the lockdown of 
+            April 2020! Strange, no? Considering everyone is confined in their homes.<br>
+            One answer to this if offered by
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9387408/">
+            the paper written by Ha Neul Yim and Jordan R Ridell.</a>
+            Residential areas close to central San Francisco are referred to as "mixed land" meaning they hold both commercial 
+            areas and residents. In their paper they argue that these were indeed potentially ideal for theft during lockdown: "Mixed land use 
+            areas may have a higher risk of commercial burglary because employees and customers were no longer present to act 
+            as capable guardians as businesses were forced to be closed during the lockdown periods".
+
+            </p>
+        </section>
+
+        <section class="text">
+            CONCLUSION: .... robbing stores and people is bad and they happen more in times of CHAOS ... the END ^^
+
         </section>
 
         </section>
