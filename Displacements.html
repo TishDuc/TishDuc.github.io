@@ -118,6 +118,44 @@
             border: none;
             border-radius: 6px;
         }
+
+        .pros-cons-section {
+            max-width: 900px;
+            margin: 40px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .pros-box,
+        .cons-box {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .pros-box {
+            background-color: #eaf7ea;
+            border: 1px solid #8bc48b;
+        }
+
+        .cons-box {
+            background-color: #fdeaea;
+            border: 1px solid #d88;
+        }
+
+        .pros-box h2,
+        .cons-box h2 {
+            margin-top: 0;
+        }
+
+        .pros-box ul,
+        .cons-box ul {
+            padding-left: 20px;
+        }
     </style>
 </head>
 
@@ -128,8 +166,7 @@
     <div class="container">
 
         <section class="title">
-            Displacements around the globe <br>
-            from 1962 to 2025, and where do they go?
+            Displacements around the globe from 1962-2025
             <br>
             
 
@@ -138,88 +175,95 @@
 
         <section class = "text">
         <p>
-            INTRODUCTION: 
+            The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
+            forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
+            originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
+            mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
+            assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
+            world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people,
+            as well as advocating for their rights and working to find durable solutions to their displacement.
+        </p>
+        <p>
+            The UNHCR also publishes data about forcibly displaced people each year. We are going to dive into one of their datasets:
+            the UNHCR Forced Displacement Flow Dataset, which tracks international displacements around the world, from 1962 to 2025.
+            First, we'll analyze the data to identify the biggest refugee crises in the 64 years we have data for, and then we'll
+            dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
+            versus 2022.
+        </p>
+
+        </section>
+        <section class = "text">
+        <p>
+            First, an overview of what the data is, and what it isn't:
             <br>
-            What is our story?
-            <br>
-            Our data shows global displacements between 1962 and 2025. Where do people go? 
-            If they are forced out of their home country, how far do they go? what patterns can we find there and has it changed over time?
-            There are so many conflicts and so many displacements around the world... So for this analysis we'll pick 3 major events 
-            and analyse & map out where people go.
-            A focus on distance and proximity.
-            <br>
-            OUR DATA: UNHCR data on displacements around the world, from 1962 to 2025 
+            Each entry is a 'flow', with an origin country, a destination country, and a number of people.
+            <div class="pros-cons-section">
+                <div class="pros-cons-grid">
+
+                    <div class="pros-box">
+                        <h2>Pros</h2>
+                        <ul>
+                            <li>Covers a long time period (1962-2025)</li>
+                            <li>Covers 231 countries</li>
+                            <li>Reliable source (UNHCR)</li>
+                        </ul>
+                    </div>
+
+                    <div class="cons-box">
+                        <h2>Limitations</h2>
+                        <ul>
+                            <li>Only tracks international flows</li>
+                            <li>Flows are aggregated year-by-year</li>
+                            <li>Many refugees have unknown origin</li>
+                            <li>Some displaced people are undocumented</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            The dataset tracks three kinds of people: refugees, asylum claimants, and people in refugee-like situations.
+            Notably, it does not track internally displaced people, and this is not an insignificant category when talking
+            about forcibly displaced people globally. According to the UNHCR in their
+            <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, internally displaced people
+            accounted for 73.5 million out of the total 123.2 million forcibly displaced people worldwide, approximately 60%, and
+            the percentage has been even higher in previous years.
         </p>
         </section>
 
         <section class = "text">
         <p>
-            OUR DATA: 
-            <br>
-            pros: 
-            <br>
-            - covers a long period of time (1962-2025)
-            <br>
-            - covers a large number of countries (origin and arrival)
-            <br>
-            - reilable source (UNHCR)
-
-            <br>
-            <br>
-            limitations:
-            <br>
-            - limited dats from 1960 to ...1980...real increase in data from 2000
-            <br>
-            - only tracks INTERNATIONAL movements... so it's not adequate for "natural disasters", or local population movements
-            <br>
-            - displacements are recorded per year: so we can-t look at the "immediate" impact of a crisis, but rather the "long-term" impact. 
-             and we can't look at super short yet intense crisis.
-            <br>
-             - Keeping in mind the numbers we have are only the "officially" recorded displacements... there are probably many more.
-            <br>
-             - "unknown" or "stateless" displacements: missing data, change of country name/status, or a wish for anonymity for safety reasons?
-            <br>
-            VISUALS?: our favorite TOP 10 largest diplacements in recent History.
-            "Wow, that's a lot of displacements!"
-            <img src="Displacements_Final_Project/Draft/Top_10_graph.png"/>
-            
-
+            Now, let's dive in! We begin with a flow map all of the data for the whole period:
         </p>
-        </section>
-
-        <section class = "text">
+        <iframe src="visualizations/Top_100_displacements_flow_map.html" height="600"></iframe>
+        <p class="caption">
+            Animated map showing displacement flows each year from 1962-2025. Countries are colored based on total outgoing
+            flows, and flow arrows are colored based on the number of people in the flow. All flows are included for the
+            country gradients, but only the 100 largest flows for each year are indicated with arrows. The timeline at the
+            bottom allows you to select a specific year and see the flows for that year.
+        </p>
         <p>
-            A LOOK AT THE BIG PICTURE:
-            <p>
-            - let's map all displacements accross the years for a start.
-            - Who moved? where? when?
-            </p>
-            VISUALS: all conflicts Map (AKA Oier's map)
-            <img src="Displacements_Final_Project/Draft/world_map.png">
-
-            </p>
-            </p>
-            conclusions?
-            </p> 
-            - the map clearly shows in dark red the main conflicts of recent History: Afganistan, Syria, Sudan, Rwanda, Venezuela, Myanmar, Ukraine etc.
-            </p> 
-            - The map shows more and more displacements over time. most probably due to the inclease in data collection and reporting (vs: not because there are more displacements)
-            also because our data only shows international displacements so a portion of movements isn't taken into consideration.
-            </p>
-            - we invite the reader to explore the map and and use the timeline to get a better understanding of the evolution of displacements over time.
-            </p> 
-            </p> 
-            from our initial data anslysis and from this map, we decided to choose three conflicts to focus on. 
-            </p>
-            we chose:
-            </p>
-            Afganistan 1980 
-            </p>
-            Rwanda 1994-1996 
-            </p>           
-            Ukraine 2022
-            </p>
-            They take place in diffrerent decades, and so are good examples to look at the evolution of displacements over time.
+            It's easy to see that the number of displaced people has been increasing for the timeframe, and that they come
+            from increasingly diverse backgrounds. You can see some of the major conflicts of recent history: Afghanistan,
+            Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
+            of news coverage about some of them, and others may have flown under your radar. So, instead of looking for
+            crises we already recognize, we'll let the data tell us when and where the crises occurred.
+        </p>
+        <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg"/>
+        </p>
+        <p class="caption">
+            Top 10 displacement episodes from 1962-2025, ranked by total number of people displaced during the episode. Each
+            episode is defined as a continuous period of time with an outgoing flow of displaced people above the median value
+            for that country, with a lower threshold of at least 10,000 people displaced per year.
+        </p>
+        <p>
+            The graph shows that the top 10 episodes all occurred after 1977, and that the largest episode was the Syrian Civil War,
+            with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice because we detected two separate
+            crisis episodes corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021 (note
+            that displacement flows don't necessarily line up exactly with the conflict periods).
+            <br>
+            Next, we'll look at three of these episodes in more detail. We'll choose crises from different decades to see if there
+            are any differences in the patterns of displacement over time, and from different regions to ensure a diverse sample.
+            The three cases studies we've chosen are: Afghanistan (1980-1988), Rwanda (1994-1996), and Ukraine (2022-2025).
         </p>
         </section>
 
@@ -228,18 +272,15 @@
 
         <section class = "text">
         <p>
-            AFGHANISTAN 1980: 
+            AFGHANISTAN 1980-1988:
             <br>
-            <br>
-            Short intro of the conflict:
             <br>
             1980: Soviet invasion of Afghanistan, leading to a long-lasting conflict and a large number of displacements.
             Though the conflict spans from 1979 to 1989, we notice a spike in Asylum seekers in between 1980 and 1984, which is why we chose to focus on these years.
             that year XXXXXXX million people fled the country to seek refuge in neighboring countries and beyond. Where did they go?
-            <br>
-            <br>
-            <img src="Displacements_Final_Project/Draft/Afghanistan.png"/>
-            <br>
+        </p>
+        <iframe src="visualizations/afghanistan_flows.html" height="600"></iframe>
+        <p>
             caption: 
             <br>
             Flux of refugee and asylum seekers fleeing Afghanistan between 1980 and 1984.
@@ -292,10 +333,9 @@
             Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically killed by Hutu militias. 
             Rwandan Constitution states that over 1 million people were killed. The genocide was marked by extreme violence, with victims 
             often murdered by neighbours, and widespread sexual violence.
-            <br>
-            <br>
-            <img src="Displacements_Final_Project/Draft/Rwanda.png"/>
-            <br>
+        </p>
+        <iframe src="visualizations/rwanda_flows.html" height="600"></iframe>
+        <p>
             caption: 
             <br>
             Flux of refugee and asylum seekers fleeing Rwanda between 1994 and 1996.
@@ -335,13 +375,11 @@
             In 2022, Russia launched a full-scale invasion of Ukraine, leading to a humanitarian crisis and yet another large number of displacements.
             The conflict has resulted in widespread destruction, loss of life, and millions forced to flee. 
             The invasion has been met with international condemnation. It still continues to this day.
+        </p>
+        <iframe src="visualizations/ukraine_flows.html" height="600"></iframe>
+        <p>
             <br>
             Big bad guy Putin did bad things! and he invaded Ukraine in 2022...booooooo
-
-
-            <br>
-            <br>
-            <img src="Displacements_Final_Project/Draft/Ukraine.png"/>
             <br>
             caption: 
             <br>
