@@ -151,31 +151,32 @@
         .scene-graphic iframe { scrollbar-width: none; }
         .scene-graphic iframe::-webkit-scrollbar { display: none; }
 
-        /* --- Layout variants for the fixed graphic --- */
+        /* --- Layout variants for the fixed graphic ---
+           Graphic widths leave ~22vw of clear gutter for text. */
         .scene-graphic.layout-center {
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70vw;
-            max-width: 1200px;
+            width: 54vw;
+            max-width: 900px;
         }
-        .scene-graphic.layout-center iframe { height: 82vh; }
-        .scene-graphic.layout-center img    { max-height: 82vh; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
+        .scene-graphic.layout-center iframe { height: 78vh; }
+        .scene-graphic.layout-center img    { max-height: 78vh; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
 
         .scene-graphic.layout-left {
             left: 2vw;
             transform: translateY(-50%);
-            width: 58vw;
+            width: 54vw;
         }
-        .scene-graphic.layout-left iframe { height: 82vh; }
-        .scene-graphic.layout-left img    { max-height: 82vh; width: auto; max-width: 100%; object-fit: contain; }
+        .scene-graphic.layout-left iframe { height: 78vh; }
+        .scene-graphic.layout-left img    { max-height: 78vh; width: auto; max-width: 100%; object-fit: contain; }
 
         .scene-graphic.layout-right {
             right: 2vw;
             transform: translateY(-50%);
-            width: 58vw;
+            width: 54vw;
         }
-        .scene-graphic.layout-right iframe { height: 82vh; }
-        .scene-graphic.layout-right img    { max-height: 82vh; width: auto; max-width: 100%; object-fit: contain; }
+        .scene-graphic.layout-right iframe { height: 78vh; }
+        .scene-graphic.layout-right img    { max-height: 78vh; width: auto; max-width: 100%; object-fit: contain; }
 
         /* Text steps scroll naturally inside the scene */
         .scene-steps {
@@ -188,18 +189,16 @@
         }
 
         .step {
-            background-color: #fbf6ea;                    /* warm paper, distinct from page bg */
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            padding: 22px 26px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            background: transparent;
+            padding: 0;
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.75;
+            color: var(--ink);
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
-            width: 32vw;
-            max-width: 460px;
+            width: 20vw;
+            max-width: 320px;
         }
 
         .step.is-active {
@@ -207,32 +206,41 @@
             transform: translateY(0);
         }
 
-        /* center: text alternates on left/right gutters around the graphic */
-        .scene[data-layout="center"] .step:nth-child(odd)  { margin-left: 3vw; margin-right: auto; }
-        .scene[data-layout="center"] .step:nth-child(even) { margin-left: auto; margin-right: 3vw; }
-
-        /* left: graphic on left half → text always on right */
-        .scene[data-layout="left"] .step {
+        /* center: graphic centered (54vw) → ~23vw clear gutters on each side.
+           Steps live in those gutters, alternating sides. */
+        .scene[data-layout="center"] .step:nth-child(odd) {
+            margin-left: 2vw;
+            margin-right: auto;
+        }
+        .scene[data-layout="center"] .step:nth-child(even) {
             margin-left: auto;
-            margin-right: 4vw;
-            width: 36vw;
-            max-width: 520px;
+            margin-right: 2vw;
+            text-align: right;
         }
 
-        /* right: graphic on right half → text always on left */
+        /* left: graphic on left half (~56vw incl. offset) → text always on right gutter */
+        .scene[data-layout="left"] .step {
+            margin-left: auto;
+            margin-right: 3vw;
+            width: 36vw;
+            max-width: 460px;
+        }
+
+        /* right: graphic on right half → text always on left gutter */
         .scene[data-layout="right"] .step {
-            margin-left: 4vw;
+            margin-left: 3vw;
             margin-right: auto;
             width: 36vw;
-            max-width: 520px;
+            max-width: 460px;
         }
 
         .step h3 {
-            margin: 0 0 10px;
-            font-size: 20px;
+            margin: 0 0 12px;
+            font-size: 22px;
             font-weight: 500;
             letter-spacing: 0.4px;
             color: var(--ink-title);
+            line-height: 1.3;
         }
 
         .step p { margin: 0 0 10px; }
