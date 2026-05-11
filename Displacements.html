@@ -1,98 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displacements around the globe (1962-2025)</title>
 
     <style>
         :root {
             --main-width: 900px;
+            --bg: #ede4d3;
+            --card-bg: rgba(255, 255, 255, 0.78);
+            --ink: #2f2f2f;
+            --ink-soft: #555;
+            --ink-title: #333;
+            --accent: #1b5e4b;
+            --accent-hover: #0f4a3a;
         }
 
-        .title {
-            font-family: Helvetica, sans-serif;
-            font-size: 28px;
-            color: #444;
-            letter-spacing: 1px;
-            line-height: 1.8;
-            font-weight: 300;
-            background-color: transparent;
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
             padding: 0;
-        }
-
-        .text {
-            font-size: 15 px;
-            line-height: 2;
-            text-align: left;
-            max-width: var(--main-width);
-            margin: 20 auto;
-            color: #2f2f2f;
         }
 
         body {
-            font-family: Helvetica, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin: 0;
-            background-color: #ecece3;
+            align-items: flex-start;
+            background-color: var(--bg);
+            color: var(--ink);
             overflow-x: hidden;
-        }
-
-        section p a {
-            display: inline;
-            width: auto;
-            margin: 0;
-            padding: 0;
-            border: none;
-            background: none;
-            font-size: inherit;
-
-            color: #1b5e4b;          /* green text */
-            text-decoration: underline;
-        }
-
-        section p a:hover {
-            color: #145a3a;          /* slightly darker on hover */
-        }
-
-        .caption {
-            text-align: center;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #555;
-            margin-top: 8px;
-        }
-
-        .references {
-            text-align: left;
-            line-height: 1.6;
-            background-color: transparent;
-        }
-
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            max-width: var(--main-width);
-            padding: 40px 20px;
-        }
-
-        a {
-            color: #1b5e4b;
-            text-decoration: underline;
-            display: inline;
-            margin: 0;
-            padding: 0;
-            width: auto;
-            border: none;
-            border-radius: 0;
-            font-size: inherit;
-            background-color: transparent;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: #0f4a3a;
-            text-decoration: underline;
+            min-height: 100vh;
         }
 
         #particles {
@@ -105,24 +48,106 @@
             pointer-events: none;
         }
 
-        section {
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
             max-width: var(--main-width);
-            margin-bottom: 60px;
-            background-color: rgba(255,255,255,0.7);
-            padding: 20px 50px;
-            border-radius: 8px;
+            width: 100%;
+            padding: 60px 20px 80px;
         }
 
-        img, iframe {
+        .title {
+            font-family: Helvetica, sans-serif;
+            font-size: 32px;
+            color: var(--ink-title);
+            letter-spacing: 1.2px;
+            line-height: 1.4;
+            font-weight: 400;
+            background-color: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 20px 0 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        section {
+            max-width: var(--main-width);
+            margin: 0 auto 36px;
+            background-color: var(--card-bg);
+            padding: 32px 56px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .text {
+            font-size: 16px;
+            line-height: 1.85;
+            text-align: left;
+            color: var(--ink);
+        }
+
+        .text p {
+            margin: 0 0 18px;
+        }
+
+        .text p:last-child {
+            margin-bottom: 0;
+        }
+
+        a,
+        section p a {
+            color: var(--accent);
+            text-decoration: underline;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            width: auto;
+            font-size: inherit;
+            display: inline;
+            transition: color 0.2s ease;
+        }
+
+        a:hover,
+        section p a:hover {
+            color: var(--accent-hover);
+        }
+
+        img,
+        iframe {
             width: 100%;
             border: none;
             border-radius: 6px;
+            display: block;
+            margin: 18px 0 6px;
+            background-color: #fff;
+        }
+
+        iframe {
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            margin: 8px 0 22px;
+            font-style: italic;
+        }
+
+        .references {
+            text-align: left;
+            line-height: 1.6;
+            background-color: transparent;
         }
 
         .pros-cons-section {
-            max-width: 900px;
-            margin: 40px auto;
-            font-family: Arial, sans-serif;
+            max-width: 100%;
+            margin: 24px auto;
+            font-family: inherit;
         }
 
         .pros-cons-grid {
@@ -133,8 +158,10 @@
 
         .pros-box,
         .cons-box {
-            padding: 20px;
+            padding: 18px 22px;
             border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
         }
 
         .pros-box {
@@ -149,55 +176,82 @@
 
         .pros-box h2,
         .cons-box h2 {
-            margin-top: 0;
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .pros-box ul,
         .cons-box ul {
             padding-left: 20px;
+            margin: 0;
+        }
+
+        .pros-box li,
+        .cons-box li {
+            margin-bottom: 4px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 720px) {
+            section {
+                padding: 24px 22px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .pros-cons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 30px 12px 50px;
+            }
         }
     </style>
 </head>
 
+<body>
 
-
-<canvas id="particles"></canvas>
+    <canvas id="particles"></canvas>
 
     <div class="container">
 
         <section class="title">
             Displacements around the globe from 1962-2025
             <br>
-            
-
-            
         </section>
 
-        <section class = "text">
-        <p>
-            The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
-            forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
-            originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
-            mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
-            assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
-            world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people,
-            as well as advocating for their rights and working to find durable solutions to their displacement.
-        </p>
-        <p>
-            The UNHCR also publishes data about forcibly displaced people each year. We are going to dive into one of their datasets:
-            the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
-            UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
-            First, we'll analyze the data to identify the biggest refugee crises in the 64 years we have data for, and then we'll
-            dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
-            versus 2022.
-        </p>
-
+        <section class="text">
+            <p>
+                The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
+                forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
+                originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
+                mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
+                assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
+                world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people,
+                as well as advocating for their rights and working to find durable solutions to their displacement.
+            </p>
+            <p>
+                The UNHCR also publishes data about forcibly displaced people each year. We are going to dive into one of their datasets:
+                the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
+                UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
+                First, we'll analyze the data to identify the biggest refugee crises in the 64 years we have data for, and then we'll
+                dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
+                versus 2022.
+            </p>
         </section>
-        <section class = "text">
-        <p>
-            First, an overview of what the data is, and what it isn't:
-            <br>
-            Each entry is a 'flow', with an origin country, a destination country, and a number of people.
+
+        <section class="text">
+            <p>
+                First, an overview of what the data is, and what it isn't:
+                <br>
+                Each entry is a 'flow', with an origin country, a destination country, and a number of people.
+            </p>
+
             <div class="pros-cons-section">
                 <div class="pros-cons-grid">
 
@@ -222,246 +276,229 @@
 
                 </div>
             </div>
-            The dataset tracks three kinds of people: refugees, asylum claimants, and people in refugee-like situations.
-            Notably, it does not track internally displaced people, and this is not an insignificant category when talking
-            about forcibly displaced people globally. According to the UNHCR in their
-            <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, internally displaced people
-            accounted for 73.5 million out of the total 123.2 million forcibly displaced people worldwide, approximately 60%, and
-            the percentage has been even higher in previous years.
-        </p>
+
+            <p>
+                The dataset tracks three kinds of people: refugees, asylum claimants, and people in refugee-like situations.
+                Notably, it does not track internally displaced people, and this is not an insignificant category when talking
+                about forcibly displaced people globally. According to the UNHCR in their
+                <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, internally displaced people
+                accounted for 73.5 million out of the total 123.2 million forcibly displaced people worldwide, approximately 60%, and
+                the percentage has been even higher in previous years.
+            </p>
         </section>
 
-        <section class = "text">
-        <p>
-            Now, let's dive in! We begin with a flow map all of the data for the whole period:
-        </p>
-        <iframe src="visualizations/Top_100_displacements_flow_map.html" height="600"></iframe>
-        <p class="caption">
-            Animated map showing displacement flows each year from 1962-2025. Countries are colored based on total outgoing
-            flows, and flow arrows are colored based on the number of people in the flow. All flows are included for the
-            country gradients, but only the 100 largest flows for each year are indicated with arrows. The timeline at the
-            bottom allows you to select a specific year and see the flows for that year.
-        </p>
-        <p>
-            It's easy to see that the number of displaced people has been increasing during the timeframe, and that they come
-            from increasingly diverse backgrounds. You can see some of the major conflicts of recent history: Afghanistan,
-            Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
-            of news coverage about some of them, and others may have flown under your radar. So, instead of looking for
-            crises we already recognize, we'll let the data tell us when and where the crises occurred.
-        </p>
-        <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg"/>
-        </p>
-        <p class="caption">
-            Top 10 displacement episodes from 1962-2025, ranked by total number of people displaced during the episode. Each
-            episode is defined as a continuous period of time with an outgoing flow of displaced people above the median value
-            for that country, with a lower threshold of at least 10,000 people displaced per year.
-        </p>
-        <p>
-            The graph shows that the top 10 episodes all occurred after 1977, and that the largest episode was the Syrian Civil War,
-            with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice because we detected two separate
-            crisis episodes corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021 (note
-            that displacement flows don't necessarily line up exactly with the conflict periods).
-            <br>
-            Next, we'll look at three of these episodes in more detail. We'll choose crises from different decades to see if there
-            are any differences in the patterns of displacement over time, and from different regions to ensure a diverse sample.
-            The three cases studies we've chosen are: Afghanistan (1980-1988), Rwanda (1994-1996), and Ukraine (2022-2025).
-        </p>
+        <section class="text">
+            <p>
+                Now, let's dive in! We begin with a flow map all of the data for the whole period:
+            </p>
+            <iframe src="visualizations/Top_100_displacements_flow_map.html" height="600"></iframe>
+            <p class="caption">
+                Animated map showing displacement flows each year from 1962-2025. Countries are colored based on total outgoing
+                flows, and flow arrows are colored based on the number of people in the flow. All flows are included for the
+                country gradients, but only the 100 largest flows for each year are indicated with arrows. The timeline at the
+                bottom allows you to select a specific year and see the flows for that year.
+            </p>
+            <p>
+                It's easy to see that the number of displaced people has been increasing during the timeframe, and that they come
+                from increasingly diverse backgrounds. You can see some of the major conflicts of recent history: Afghanistan,
+                Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
+                of news coverage about some of them, and others may have flown under your radar. So, instead of looking for
+                crises we already recognize, we'll let the data tell us when and where the crises occurred.
+            </p>
+            <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg" />
+            <p class="caption">
+                Top 10 displacement episodes from 1962-2025, ranked by total number of people displaced during the episode. Each
+                episode is defined as a continuous period of time with an outgoing flow of displaced people above the median value
+                for that country, with a lower threshold of at least 10,000 people displaced per year.
+            </p>
+            <p>
+                The graph shows that the top 10 episodes all occurred after 1977, and that the largest episode was the Syrian Civil War,
+                with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice because we detected two separate
+                crisis episodes corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021 (note
+                that displacement flows don't necessarily line up exactly with the conflict periods).
+                <br>
+                Next, we'll look at three of these episodes in more detail. We'll choose crises from different decades to see if there
+                are any differences in the patterns of displacement over time, and from different regions to ensure a diverse sample.
+                The three cases studies we've chosen are: Afghanistan (1980-1988), Rwanda (1994-1996), and Ukraine (2022-2025).
+            </p>
         </section>
 
-
-
-
-        <section class = "text">
-        <p>
-            AFGHANISTAN 1980-1988:
-            <br>
-            <br>
-            1980: Soviet invasion of Afghanistan, leading to a long-lasting conflict and a large number of displacements.
-            Though the conflict spans from 1979 to 1989, we notice a spike in Asylum seekers in between 1980 and 1984, which is why we chose to focus on these years.
-            that year XXXXXXX million people fled the country to seek refuge in neighboring countries and beyond. Where did they go?
-        </p>
-        <iframe src="visualizations/afghanistan_flows.html" height="600"></iframe>
-        <p>
-            caption: 
-            <br>
-            Flux of refugee and asylum seekers fleeing Afghanistan between 1980 and 1984.
-            <br>
-            <br>
-            conclusions:
-            <br>
-            - the Countries in red or dark red are neighbouring countries ex Pakistan and Iran, showing a larger number of 
-            displacements in the nearby area (up to 1.4, million moving to Iran in 1981)
-            <br>
-            - Turkie, Germany and India are marked in oragnge some years and recieved a significant number of displacements
-            <br>
-            - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Afghanistan, 
-            1000 or less people sought refuge in France, italy, Spain, US, UK etc.
-            <br>
-            we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
-            <br>
-            <br>
-            EXTRA GRAPHIC IDEA: visualizing the ration of people "recieved " VS total number that fled ??
-            like the line example Sune gave us at the beginning if the course.
-            <br>
-            Iran took in "this many" , while France took "this many"
-            <br>
-            OR a line graph showing distance travelled by refugees
-            <br>
-            Iran............: x -- x
-            <br>
-            Pakistan....: x --- x
-            <br>
-            France.......: x ----------------------------------------------------------------------------------------------------------------------------------- x
-            <br>
-            People travelled "this far" to seek refuge 
-            <br>
-
-    
+        <section class="text">
+            <p>
+                AFGHANISTAN 1980-1988:
+                <br>
+                <br>
+                1980: Soviet invasion of Afghanistan, leading to a long-lasting conflict and a large number of displacements.
+                Though the conflict spans from 1979 to 1989, we notice a spike in Asylum seekers in between 1980 and 1984, which is why we chose to focus on these years.
+                that year XXXXXXX million people fled the country to seek refuge in neighboring countries and beyond. Where did they go?
+            </p>
+            <iframe src="visualizations/afghanistan_flows.html" height="600"></iframe>
+            <p>
+                caption:
+                <br>
+                Flux of refugee and asylum seekers fleeing Afghanistan between 1980 and 1984.
+                <br>
+                <br>
+                conclusions:
+                <br>
+                - the Countries in red or dark red are neighbouring countries ex Pakistan and Iran, showing a larger number of
+                displacements in the nearby area (up to 1.4, million moving to Iran in 1981)
+                <br>
+                - Turkie, Germany and India are marked in oragnge some years and recieved a significant number of displacements
+                <br>
+                - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Afghanistan,
+                1000 or less people sought refuge in France, italy, Spain, US, UK etc.
+                <br>
+                we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
+                <br>
+                <br>
+                EXTRA GRAPHIC IDEA: visualizing the ration of people "recieved " VS total number that fled ??
+                like the line example Sune gave us at the beginning if the course.
+                <br>
+                Iran took in "this many" , while France took "this many"
+                <br>
+                OR a line graph showing distance travelled by refugees
+                <br>
+                Iran............: x -- x
+                <br>
+                Pakistan....: x --- x
+                <br>
+                France.......: x ----------------------------------------------------------------------------------------------------------------------------------- x
+                <br>
+                People travelled "this far" to seek refuge
+            </p>
         </section>
 
-
-
-
-
-        <section class = "text">
-        <p>
-            RWANDA 1994-1996: 
-            <br>
-            <br>
-            Short intro of the conflict:
-            <br>
-            The Rwandan genocide, also known as the Tutsi genocide, occurred from 7 April to 19 July 1994 during the Rwandan Civil War.
-            Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically killed by Hutu militias. 
-            Rwandan Constitution states that over 1 million people were killed. The genocide was marked by extreme violence, with victims 
-            often murdered by neighbours, and widespread sexual violence.
-        </p>
-        <iframe src="visualizations/rwanda_flows.html" height="600"></iframe>
-        <p>
-            caption: 
-            <br>
-            Flux of refugee and asylum seekers fleeing Rwanda between 1994 and 1996.
-            <br>
-            <br>
-            conclusions:
-            <br>
-            - the Countries in red or dark red are neighbouring countries ex Democratic Republic of Congo, Tanzania, and Burundi, 
-            showing a larger number of displacements in the nearby area (up to 1.3, million moving to Dem.Rep Congo in 1994)
-            <br>
-            - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Rwanda
-            1000 or less people sought refuge in Angola, Canada, Eurpoe etc.
-            <br>
-            we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
-            <br>
-            <br>
-            SAME EXTRA GRAPHIC? showing distances traveled by refugees?
-            <br>
-            Iran    : x --- x
-            <br>
-            Pakistan: x ----- x
-            <br>
-            Germany  : x ------------------------------------------------------------------------------------------ x
-            <br>
-            People travelled "this far" to seek refuge 
-    
+        <section class="text">
+            <p>
+                RWANDA 1994-1996:
+                <br>
+                <br>
+                Short intro of the conflict:
+                <br>
+                The Rwandan genocide, also known as the Tutsi genocide, occurred from 7 April to 19 July 1994 during the Rwandan Civil War.
+                Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically killed by Hutu militias.
+                Rwandan Constitution states that over 1 million people were killed. The genocide was marked by extreme violence, with victims
+                often murdered by neighbours, and widespread sexual violence.
+            </p>
+            <iframe src="visualizations/rwanda_flows.html" height="600"></iframe>
+            <p>
+                caption:
+                <br>
+                Flux of refugee and asylum seekers fleeing Rwanda between 1994 and 1996.
+                <br>
+                <br>
+                conclusions:
+                <br>
+                - the Countries in red or dark red are neighbouring countries ex Democratic Republic of Congo, Tanzania, and Burundi,
+                showing a larger number of displacements in the nearby area (up to 1.3, million moving to Dem.Rep Congo in 1994)
+                <br>
+                - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Rwanda
+                1000 or less people sought refuge in Angola, Canada, Eurpoe etc.
+                <br>
+                we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
+                <br>
+                <br>
+                SAME EXTRA GRAPHIC? showing distances traveled by refugees?
+                <br>
+                Iran    : x --- x
+                <br>
+                Pakistan: x ----- x
+                <br>
+                Germany  : x ------------------------------------------------------------------------------------------ x
+                <br>
+                People travelled "this far" to seek refuge
+            </p>
         </section>
 
-
-
-        <section class = "text">
-        <p>
-            UKRAINE INVASION 
-            <br>
-            <br>
-            Short intro of the conflict:
-            In 2022, Russia launched a full-scale invasion of Ukraine, leading to a humanitarian crisis and yet another large number of displacements.
-            The conflict has resulted in widespread destruction, loss of life, and millions forced to flee. 
-            The invasion has been met with international condemnation. It still continues to this day.
-        </p>
-        <iframe src="visualizations/ukraine_flows.html" height="600"></iframe>
-        <p>
-            <br>
-            Big bad guy Putin did bad things! and he invaded Ukraine in 2022...booooooo
-            <br>
-            caption: 
-            <br>
-            Flux of refugee and asylum seekers fleeing Ukraine between 2022 and 2025. The conflict is still ongoing.
-            <br>
-            <br>
-            conclusions:
-            <br>
-            - the Countries in red or dark red are neighbouring countries ex Democratic Republic of Congo, Tanzania, and Burundi, 
-            showing a larger number of displacements in the nearby area (up to 1.3, million moving to Dem.Rep Congo in 1994)
-            <br>
-            - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Rwanda
-            1000 or less people sought refuge in Angola, Canada, Eurpoe etc.
-            <br>
-            we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
-            <br>
-            <br>
-            SAME EXTRA GRAPHIC? showing distances traveled by refugees?
-            <br>
-            Iran    : x --- x
-            <br>
-            Pakistan: x ----- x
-            <br>
-            Germany  : x ------------------------------------------------------------------------------------------ x
-            <br>
-            People travelled "this far" to seek refuge 
-    
+        <section class="text">
+            <p>
+                UKRAINE INVASION
+                <br>
+                <br>
+                Short intro of the conflict:
+                In 2022, Russia launched a full-scale invasion of Ukraine, leading to a humanitarian crisis and yet another large number of displacements.
+                The conflict has resulted in widespread destruction, loss of life, and millions forced to flee.
+                The invasion has been met with international condemnation. It still continues to this day.
+            </p>
+            <iframe src="visualizations/ukraine_flows.html" height="600"></iframe>
+            <p>
+                <br>
+                Big bad guy Putin did bad things! and he invaded Ukraine in 2022...booooooo
+                <br>
+                caption:
+                <br>
+                Flux of refugee and asylum seekers fleeing Ukraine between 2022 and 2025. The conflict is still ongoing.
+                <br>
+                <br>
+                conclusions:
+                <br>
+                - the Countries in red or dark red are neighbouring countries ex Democratic Republic of Congo, Tanzania, and Burundi,
+                showing a larger number of displacements in the nearby area (up to 1.3, million moving to Dem.Rep Congo in 1994)
+                <br>
+                - the rest is shown on the map as pale pink indicating that less than out of the XXXXX million that fled Rwanda
+                1000 or less people sought refuge in Angola, Canada, Eurpoe etc.
+                <br>
+                we encourage the reader once more to explore the data for themselves and to use the timeline to see how the displacements evolved over time.
+                <br>
+                <br>
+                SAME EXTRA GRAPHIC? showing distances traveled by refugees?
+                <br>
+                Iran    : x --- x
+                <br>
+                Pakistan: x ----- x
+                <br>
+                Germany  : x ------------------------------------------------------------------------------------------ x
+                <br>
+                People travelled "this far" to seek refuge
+            </p>
         </section>
 
-        
-        <section class = "text">
-        <p>
-            DISCUSSION/CONCLUSION:
-            <br>
-            <br>
-            So where do people go?
-            <br>
-            From our data it sure looks like proximity is a main factor. immediate neighbouring countries to a crisis are recurrently 
-            tmapped out in red on our maps, showing that they receive a significant number of displacements.
-            <br>
-            <br>
-            A recurring pattern is also the attraction for Europe. further away, sometimes half way accross the planet 
-            (ex from Rwanda), and yet people seek refuge in Europe, and in particular in Germany, France, UK, Spain etc.
-            (ex: Genmany recieved almost 5.5000 asylum seekers from Afganistan in 1980)
-            stricter rules and more difficult access??
-
- 
-            <br>
-            <br>
-            OTHER NOTES:
-            <br>
-            <br>
-            POLITICAL REASONS: Which countries that are available to the refugees when conflict arises??
-            ex: Ukrainians had so much more options to flee to than Rwandans or Afghanis.
-            they were much more welcomed, than the other two groups.
-            <br>
-
-            <br>
-            <br>
-            OPENING TO FURTHER RESEARCH
-            <br>
-            <br>
-            In this article we focused refugees and asylum seekers movements and whether and whether their patterns evolved over time.
-            We also looked at whether proximity was a main factor in the choice of destination for refugees and asylum seekers.
-            to further this research and alanyse movements, we could have a look at there factors:
-            <br>
-            Does the economic situation of the destination country play a role? GDP? 
-            <br>
-            Does language, culture and religious similarities play a role?
-            <br>
-            Does the political situation and the openness of the destination country play a role?
-            <br>
-            <br>
-
+        <section class="text">
+            <p>
+                DISCUSSION/CONCLUSION:
+                <br>
+                <br>
+                So where do people go?
+                <br>
+                From our data it sure looks like proximity is a main factor. immediate neighbouring countries to a crisis are recurrently
+                tmapped out in red on our maps, showing that they receive a significant number of displacements.
+                <br>
+                <br>
+                A recurring pattern is also the attraction for Europe. further away, sometimes half way accross the planet
+                (ex from Rwanda), and yet people seek refuge in Europe, and in particular in Germany, France, UK, Spain etc.
+                (ex: Genmany recieved almost 5.5000 asylum seekers from Afganistan in 1980)
+                stricter rules and more difficult access??
+                <br>
+                <br>
+                OTHER NOTES:
+                <br>
+                <br>
+                POLITICAL REASONS: Which countries that are available to the refugees when conflict arises??
+                ex: Ukrainians had so much more options to flee to than Rwandans or Afghanis.
+                they were much more welcomed, than the other two groups.
+                <br>
+                <br>
+                <br>
+                OPENING TO FURTHER RESEARCH
+                <br>
+                <br>
+                In this article we focused refugees and asylum seekers movements and whether and whether their patterns evolved over time.
+                We also looked at whether proximity was a main factor in the choice of destination for refugees and asylum seekers.
+                to further this research and alanyse movements, we could have a look at there factors:
+                <br>
+                Does the economic situation of the destination country play a role? GDP?
+                <br>
+                Does language, culture and religious similarities play a role?
+                <br>
+                Does the political situation and the openness of the destination country play a role?
+                <br>
+                <br>
+            </p>
         </section>
-        
-        
-
-        </p>    
-        
 
     </div>
 
-    
+</body>
+
+</html>
