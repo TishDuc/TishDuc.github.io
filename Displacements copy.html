@@ -237,7 +237,15 @@
             flex-direction: column;
             gap: 55vh;
             padding: 15vh 0;
+            /* let clicks pass through the empty space to the fixed graphic */
+            pointer-events: none;
         }
+
+        .step,
+        .step a,
+        .step button,
+        .step input,
+        .step table { pointer-events: auto; }
 
         .step {
             background: transparent;
@@ -536,34 +544,129 @@
                     </div>
                     <div class="step">
                         <p>
-                            The soviets started their occupation (between 1980 - 1085) with a "scorched earth campaign", which aimed to 
-                            cut any support the mujahideen (religious Afghan freedom fighters) might have in the region. This implied the 
-                            destrucyion of crops, irrication systems, and villages and affected local population terribly. By the end of 1981, 
-                            the widespread destruction of civilian infrastructure further intensified displacement and cross-border asylum 
-                            movements.
-                            <br>
-                            Source: This article written my HIstory professor Edward B. Westermann
-                            https://journals.lib.unb.ca/index.php/jcs/article/view/4356/5011
-                            <br>
-                            "Soviet attempts to intimidate the civil population involved a joint air-land effort. The intensive bombardment 
-                            of villages [...] erved as the prelude for the entry of mechanized and armored forces into the area. These forces 
-                            then proceeded to conduct a "scorched earth" campaign by destroying the local dwellings, food supplies, crops 
-                            in the field, irrigation systems, livestock and wells. One Swedish official, after visiting several villages 
-                            destroyed by the Soviets noted, "Russian soldiers shot at anything alive in six villages -- people, hens, donkeys 
-                            - and then they plundered what remained of value."16 These Soviet operations aimed at driving the villagers out of 
-                            these areas in an effort to create a cordon sanitaire in which the insurgents would find no support.
-                                                        
+                            The soviets started their occupation (between 1980 - 1985) with a "scorched earth campaign", which aimed to
+                            cut any support the mujahideen (religious Afghan freedom fighters) might have in the region. This implied the
+                            destruction of crops, irrigation systems, and villages and affected local population terribly. By the end of
+                            1981, the widespread destruction of civilian infrastructure further intensified displacement and cross-border
+                            asylum movements.
                         </p>
-                    <div class="step">
-                        <p>
-                            Countries in dark red are immediate neighbors. Pakistan and Iran absorbed the bulk — up to 1.4 million
-                            moving to Iran in 1981 alone.
+                        <p class="source">
+                            Source: article written by History professor Edward B. Westermann —
+                            <a href="https://journals.lib.unb.ca/index.php/jcs/article/view/4356/5011">journals.lib.unb.ca</a>
                         </p>
                     </div>
                     <div class="step">
                         <p>
-                            Most other countries are pale pink: of the millions who fled, fewer than 1,000 reached places like France,
-                            Italy, Spain, the US or UK.
+                            "Soviet attempts to intimidate the civil population involved a joint air-land effort. The intensive
+                            bombardment of villages [...] served as the prelude for the entry of mechanized and armored forces into the
+                            area. These forces then proceeded to conduct a 'scorched earth' campaign by destroying the local dwellings,
+                            food supplies, crops in the field, irrigation systems, livestock and wells. One Swedish official, after
+                            visiting several villages destroyed by the Soviets noted, 'Russian soldiers shot at anything alive in six
+                            villages — people, hens, donkeys — and then they plundered what remained of value.' These Soviet operations
+                            aimed at driving the villagers out of these areas in an effort to create a cordon sanitaire in which the
+                            insurgents would find no support."
+                        </p>
+                    </div>
+                    <div class="step">
+                        <h3>Where do people go?</h3>
+                        <p>
+                            We immediately notice Iran in dark red taking in a whopping 1.4 million people in 1981, followed closely by
+                            Pakistan with close to a million refugees. Those are two adjacent countries.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <div class="mini-table-wrapper">
+                            <table class="mini-table">
+                                <thead>
+                                    <tr>
+                                        <th>asylumname</th><th>1980</th><th>1981</th><th>1982</th><th>1983</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>pakistan</td><td>1.0M</td><td>947k</td><td>502k</td><td>0</td></tr>
+                                    <tr><td>iran</td><td>270k</td><td>1.4M</td><td>0</td><td>200k</td></tr>
+                                    <tr><td>germany</td><td>5k</td><td>4k</td><td>2k</td><td>687</td></tr>
+                                    <tr><td>turkiye</td><td>5k</td><td>0</td><td>4k</td><td>0</td></tr>
+                                    <tr><td>india</td><td>0</td><td>3k</td><td>2k</td><td>3k</td></tr>
+                                    <tr><td>syria</td><td>0</td><td>0</td><td>3k</td><td>0</td></tr>
+                                    <tr><td>saudi arabia</td><td>0</td><td>0</td><td>2k</td><td>0</td></tr>
+                                    <tr><td>united arab emirates</td><td>2k</td><td>0</td><td>0</td><td>0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <p>
+                            But what about the other adjacent countries north of Afghanistan: Turkmenistan, Uzbekistan, and Tajikistan?
+                            Why are they marked in grey? Did they not take in any refugees? …Not quite. A Folium map usually uses
+                            current country borders, because it relies on modern basemap tiles or modern GeoJSON/shapefiles. Back in
+                            1980, the three aforementioned countries were still part of the USSR bloc and therefore were considered
+                            part of the direct attacking force, explaining why no Afghan would seek refuge up north.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Iran from 1.4M in 1981 to 0 in 1982? Why do some countries take in massive numbers one year and then 0 the
+                            following year? Policy changes? Did the borders suddenly close? Two things:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Status name:</strong> Upon closer inspection, it would rather seem that this is more a question
+                                of "status" than an actual halt in displacement flows. Though the borders were indeed open during this
+                                period, displaced people were not labeled as "refugees" and could therefore be unregistered in our UNHCR
+                                dataset. So our data may show 0 while in reality hundreds were still physically crossing into Iran.
+                            </li>
+                            <li>
+                                <strong>UNHCR reconstruction of numbers retrospectively:</strong> It may have been hard to keep track of
+                                the exact flux taking place each year of the conflict, and it could be that some records were incomplete,
+                                estimated retrospectively, or merged into a single year. This is something that can occur with older
+                                displacement data.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="step">
+                        <p>
+                            "Until 1992, the Iranian government allowed many Afghans to register as 'involuntary migrants' (mohajerin),
+                            gain automatic residency in Iran, and enjoy benefits such as basic healthcare and work permits. Iranian
+                            officials effectively treated these registered Afghans as refugees, though that designation was not
+                            officially used by the Iranian government."
+                        </p>
+                        <p class="source">
+                            Source: Human Rights Watch —
+                            <a href="https://www.hrw.org/reports/iran1113_ForUpload_0.pdf">hrw.org/reports/iran1113_ForUpload_0.pdf</a>
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            As seen in our preliminary study, we have few data points around this decade. This backs up the
+                            above-mentioned point.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-afg-out" data-layout="center">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>How far do people go?</h3>
+                        <p>
+                            Let's have a closer look at the average distance traveled by refugees to flee this conflict.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p class="caption">
+                            Afghanistan outflow of refugees between 1979 and 1989.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-afg-dist" data-layout="center">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p class="caption">
+                            Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble
+                            represents a flow of refugees from Afghanistan to a specific destination country in a specific year.
                         </p>
                     </div>
                 </div>
@@ -638,6 +741,12 @@
             </div>
             <div class="scene-graphic" id="g-afg">
                 <iframe src="visualizations/afghanistan_flows.html" scrolling="no"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-afg-out">
+                <img src="visualizations/afghanistan_outflow.png" alt="Afghanistan outflow 1979-1989" />
+            </div>
+            <div class="scene-graphic" id="g-afg-dist">
+                <iframe src="visualizations/afghanistan_distance_vs_count.html" scrolling="no"></iframe>
             </div>
             <div class="scene-graphic" id="g-rwa">
                 <iframe src="visualizations/rwanda_flows.html" scrolling="no"></iframe>
