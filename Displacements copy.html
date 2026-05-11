@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displacements around the globe (1962-2025)</title>
+
+    <style>
+        :root {
+            --main-width: 900px;
+            --bg: #ede4d3;
+            --ink: #2f2f2f;
+            --ink-soft: #555;
+            --ink-title: #333;
+            --accent: #1b5e4b;
+            --accent-hover: #0f4a3a;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: var(--main-width);
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        /* --- Intro (scrolls normally) --- */
+        .title {
+            font-size: 32px;
+            color: var(--ink-title);
+            letter-spacing: 1.2px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: center;
+            padding: 20px 0 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .intro {
+            font-size: 16px;
+            line-height: 1.85;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .intro p { margin: 0 0 18px; }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        a:hover { color: var(--accent-hover); }
+
+        .pros-cons-section { margin: 24px 0; }
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .pros-box, .cons-box {
+            padding: 18px 22px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .pros-box {
+            background-color: rgba(139, 196, 139, 0.18);
+            border: 1px solid #8bc48b;
+        }
+        .cons-box {
+            background-color: rgba(216, 136, 136, 0.18);
+            border: 1px solid #d88;
+        }
+        .pros-box h2, .cons-box h2 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .pros-box ul, .cons-box ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .pros-box li, .cons-box li {
+            margin-bottom: 4px;
+            line-height: 1.55;
+        }
+
+        /* --- Scrollytelling scenes (Pudding style) ---
+           .scenes breaks out of the .container max-width to use the full
+           viewport. Each .scene reserves scroll height. The fixed graphic
+           fades in/out only at scene boundaries and is repositioned per
+           layout. Text steps live in normal flow and scroll past. */
+        .scenes {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);   /* full-bleed out of container */
+        }
+
+        .scene {
+            position: relative;
+            padding: 25vh 0;
+        }
+
+        .scene-graphic {
+            position: fixed;
+            top: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            z-index: 1;
+        }
+
+        .scene-graphic.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scene-graphic iframe,
+        .scene-graphic img {
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            display: block;
+            background-color: transparent;
+            overflow: hidden;          /* kill iframe internal scrollbars */
+        }
+        .scene-graphic iframe { scrollbar-width: none; }
+        .scene-graphic iframe::-webkit-scrollbar { display: none; }
+
+        /* --- Layout variants for the fixed graphic --- */
+        .scene-graphic.layout-center {
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            max-width: 1200px;
+        }
+        .scene-graphic.layout-center iframe { height: 82vh; }
+        .scene-graphic.layout-center img    { max-height: 82vh; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
+
+        .scene-graphic.layout-left {
+            left: 2vw;
+            transform: translateY(-50%);
+            width: 58vw;
+        }
+        .scene-graphic.layout-left iframe { height: 82vh; }
+        .scene-graphic.layout-left img    { max-height: 82vh; width: auto; max-width: 100%; object-fit: contain; }
+
+        .scene-graphic.layout-right {
+            right: 2vw;
+            transform: translateY(-50%);
+            width: 58vw;
+        }
+        .scene-graphic.layout-right iframe { height: 82vh; }
+        .scene-graphic.layout-right img    { max-height: 82vh; width: auto; max-width: 100%; object-fit: contain; }
+
+        /* Text steps scroll naturally inside the scene */
+        .scene-steps {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 55vh;
+            padding: 15vh 0;
+        }
+
+        .step {
+            background-color: #fbf6ea;                    /* warm paper, distinct from page bg */
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 22px 26px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            width: 32vw;
+            max-width: 460px;
+        }
+
+        .step.is-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* center: text alternates on left/right gutters around the graphic */
+        .scene[data-layout="center"] .step:nth-child(odd)  { margin-left: 3vw; margin-right: auto; }
+        .scene[data-layout="center"] .step:nth-child(even) { margin-left: auto; margin-right: 3vw; }
+
+        /* left: graphic on left half → text always on right */
+        .scene[data-layout="left"] .step {
+            margin-left: auto;
+            margin-right: 4vw;
+            width: 36vw;
+            max-width: 520px;
+        }
+
+        /* right: graphic on right half → text always on left */
+        .scene[data-layout="right"] .step {
+            margin-left: 4vw;
+            margin-right: auto;
+            width: 36vw;
+            max-width: 520px;
+        }
+
+        .step h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            color: var(--ink-title);
+        }
+
+        .step p { margin: 0 0 10px; }
+        .step p:last-child { margin-bottom: 0; }
+
+        .caption {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            font-style: italic;
+            margin: 4px 0 10px;
+        }
+
+        /* --- Conclusion (scrolls normally) --- */
+        .conclusion {
+            font-size: 16px;
+            line-height: 1.85;
+            text-align: left;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+        }
+        .conclusion p { margin: 0 0 18px; }
+        .conclusion h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 28px 0 10px;
+            color: var(--ink-title);
+        }
+
+        @media (max-width: 720px) {
+            .title { font-size: 24px; }
+            .pros-cons-grid { grid-template-columns: 1fr; }
+            .container { padding: 30px 12px 50px; }
+            .scene-graphic iframe { height: 50vh; }
+            .scene-graphic img { max-height: 50vh; }
+            .step { max-width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+
+        <!-- Title + intro scroll normally -->
+        <h1 class="title">Displacements around the globe from 1962-2025</h1>
+
+        <div class="intro">
+            <p>
+                The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
+                forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
+                originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
+                mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
+                assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
+                world.
+            </p>
+            <p>
+                The UNHCR also publishes data about forcibly displaced people each year. We are going to dive into one of their datasets:
+                the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
+                UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
+                First, we'll analyze the data to identify the biggest refugee crises in the 64 years we have data for, and then we'll
+                dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
+                versus 2022.
+            </p>
+            <p>
+                First, an overview of what the data is, and what it isn't: each entry is a 'flow', with an origin country, a destination
+                country, and a number of people.
+            </p>
+
+            <div class="pros-cons-section">
+                <div class="pros-cons-grid">
+                    <div class="pros-box">
+                        <h2>Pros</h2>
+                        <ul>
+                            <li>Covers a long time period (1962-2025)</li>
+                            <li>Covers 216 countries</li>
+                            <li>Reliable source (UNHCR)</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <h2>Limitations</h2>
+                        <ul>
+                            <li>Only tracks international flows</li>
+                            <li>Flows are aggregated year-by-year</li>
+                            <li>Many refugees have unknown origin</li>
+                            <li>Some displaced people are undocumented</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                The dataset tracks three kinds of people: refugees, asylum claimants, and people in refugee-like situations.
+                Notably, it does not track internally displaced people — according to the UNHCR
+                <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, they accounted for 73.5 million
+                out of 123.2 million forcibly displaced people worldwide, approximately 60%.
+            </p>
+            <p style="text-align:center; color: var(--ink-soft); font-style: italic; margin-top: 40px;">
+                Scroll down to dive in ↓
+            </p>
+        </div>
+
+        <!-- Scrollytelling scenes: graphic stays fixed, text steps scroll past -->
+        <div class="scenes">
+
+            <section class="scene" data-graphic="g-global" data-layout="center">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>A global view, 1962–2025</h3>
+                        <p>
+                            Animated map of displacement flows each year. Country color reflects total outgoing flows; arrows show the
+                            100 largest flows per year. Use the timeline at the bottom to scrub through years.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            The number of displaced people has been rising steadily, and they come from increasingly diverse backgrounds:
+                            Afghanistan, Syria, Sudan, Ukraine, Venezuela, Myanmar… Rather than picking crises we already recognize, we'll
+                            let the data tell us when and where they happened.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-top10" data-layout="right">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>The ten largest episodes</h3>
+                        <p>
+                            Top 10 displacement episodes ranked by total people displaced. An episode is a continuous period with
+                            outgoing flow above that country's median, and at least 10,000 people per year.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            All ten happened after 1977. The largest is the Syrian Civil War — over 9 million displaced between 2011 and
+                            2025.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Afghanistan appears twice — the Soviet–Afghan war (1979–1989) and the US-led invasion (2001–2021). Next,
+                            three case studies from different decades and regions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-afg" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>Afghanistan, 1980–1988</h3>
+                        <p>
+                            Refugee and asylum-seeker flows from Afghanistan during the Soviet invasion. The spike is concentrated in
+                            1980–1984.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Countries in dark red are immediate neighbors. Pakistan and Iran absorbed the bulk — up to 1.4 million
+                            moving to Iran in 1981 alone.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Most other countries are pale pink: of the millions who fled, fewer than 1,000 reached places like France,
+                            Italy, Spain, the US or UK.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-rwa" data-layout="right">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>Rwanda, 1994–1996</h3>
+                        <p>
+                            Over roughly 100 days in 1994, members of the Tutsi ethnic group — along with moderate Hutu and Twa — were
+                            systematically killed by Hutu militias; over a million people died.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Displacement follows the same pattern: neighbors first. The Democratic Republic of Congo, Tanzania and
+                            Burundi appear dark red, with up to 1.3 million moving to DRC in 1994.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Distant destinations — Angola, Canada, much of Europe — received fewer than 1,000 each.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-ukr" data-layout="center">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>Ukraine, 2022–2025</h3>
+                        <p>
+                            Flows from Ukraine since Russia's 2022 full-scale invasion. The conflict is ongoing.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            The pattern shifts. Neighbors still dominate, but the spread across Europe is much wider and warmer than in
+                            the previous two cases.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Ukrainians were granted access and protection on a scale neither Afghans nor Rwandans received. Why?
+                            Geography, politics, and policy all matter.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Fixed graphics pool: one per scene, identified by data-graphic -->
+        <div class="graphics-pool">
+            <div class="scene-graphic" id="g-global">
+                <iframe src="visualizations/Top_100_displacements_flow_map.html" scrolling="no"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-top10">
+                <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg" alt="Top 10 displacement episodes" />
+            </div>
+            <div class="scene-graphic" id="g-afg">
+                <iframe src="visualizations/afghanistan_flows.html" scrolling="no"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-rwa">
+                <iframe src="visualizations/rwanda_flows.html" scrolling="no"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-ukr">
+                <iframe src="visualizations/ukraine_flows.html" scrolling="no"></iframe>
+            </div>
+        </div>
+
+        <!-- Conclusion scrolls normally -->
+        <div class="conclusion">
+            <h3>So where do people go?</h3>
+            <p>
+                Proximity is the dominant factor. Immediate neighbors light up red on every map — they receive the bulk of displacements
+                in the first years of a crisis.
+            </p>
+            <p>
+                Europe is a recurring secondary attractor, sometimes halfway across the planet (as with Rwanda). Germany received almost
+                5,500 asylum seekers from Afghanistan in 1980. But access is uneven: stricter rules, longer journeys, and political
+                framing all shape who actually reaches Europe.
+            </p>
+            <h3>Political openness matters</h3>
+            <p>
+                Ukrainians had far more options to flee to than Rwandans or Afghans, and were welcomed more broadly. The same data
+                pattern (neighbors first, Europe second) hides very different reception policies underneath.
+            </p>
+            <h3>Further research</h3>
+            <p>
+                We focused on refugees and asylum seekers, and whether their destination patterns evolve over time. To go further, one
+                could look at:
+            </p>
+            <p>
+                Does the economic situation of the destination country play a role (GDP)? Do language, culture, and religion shape
+                destinations? Does the openness of the destination's politics determine who gets in?
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Fade each sticky scene in while it's in the viewport, out when it leaves.
+        const scenes = document.querySelectorAll('.scene-inner');
+        // 1) Activate the matching fixed graphic for whichever scene currently
+        //    occupies the central band of the viewport. If NO scene occupies it
+        //    (we are in the intro or the conclusion), hide every graphic.
+        const visibleScenes = new Set();
+        const sceneIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) visibleScenes.add(entry.target);
+                else visibleScenes.delete(entry.target);
+            });
+
+            const allGraphics = document.querySelectorAll('.scene-graphic');
+            if (visibleScenes.size === 0) {
+                allGraphics.forEach(g => g.classList.remove('is-active'));
+                return;
+            }
+            // Pick the scene closest to viewport center as the active one.
+            const mid = window.innerHeight / 2;
+            let active = null;
+            let bestDist = Infinity;
+            visibleScenes.forEach(s => {
+                const r = s.getBoundingClientRect();
+                const center = (r.top + r.bottom) / 2;
+                const d = Math.abs(center - mid);
+                if (d < bestDist) { bestDist = d; active = s; }
+            });
+            const activeId = active && active.dataset.graphic;
+            const activeLayout = (active && active.dataset.layout) || 'center';
+            allGraphics.forEach(g => {
+                const on = g.id === activeId;
+                g.classList.toggle('is-active', on);
+                // keep only the layout class of the currently active scene
+                g.classList.remove('layout-center', 'layout-left', 'layout-right');
+                if (on) g.classList.add('layout-' + activeLayout);
+            });
+        }, {
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
+        });
+        document.querySelectorAll('.scene').forEach(s => sceneIO.observe(s));
+
+        // 2) Fade individual text steps in/out as they pass through the viewport.
+        const stepIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                } else {
+                    entry.target.classList.remove('is-active');
+                }
+            });
+        }, {
+            rootMargin: '-30% 0px -30% 0px',
+            threshold: 0
+        });
+        document.querySelectorAll('.step').forEach(s => stepIO.observe(s));
+    </script>
+
+</body>
+
+</html>
