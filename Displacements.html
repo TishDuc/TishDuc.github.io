@@ -220,21 +220,21 @@
         }
 
         .pros-box {
-            background-color: #eaf7ea;
-            border: 1px solid #8bc48b;
+            background-color: var(--bg);
         }
 
         .cons-box {
-            background-color: #fdeaea;
-            border: 1px solid #d88;
+            background-color: var(--bg);
         }
 
         .pros-box h2,
         .cons-box h2 {
             margin: 0 0 10px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.4px;
+            text-align: center;
+            font-family: "Hevletica Neue", Helvetica, Arial, sans-serif;
         }
 
         .pros-box ul,
@@ -284,19 +284,19 @@
             <p>
                 The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
                 forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
-                originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
-                mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
+                originally only intended to provide temporary assistance to European refugees. However, over the years, the organisation's
+                mandate has expanded to include people of all nationalities and in all regions of the world. Today, they provide
                 assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
                 world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people,
                 as well as advocating for their rights and working to find durable solutions to their displacement.
             </p>
             <p>
-                The UNHCR also publishes data about forcibly displaced people each year. We are going to dive into one of their datasets:
+                The UNHCR publishes their data about forcibly displaced people and updates it every six months. We are going to dive into one of their datasets:
                 the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
                 UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
-                First, we'll analyze the data to identify the biggest refugee crises in the 64 years we have data for, and then we'll
+                First, we'll analyze the data to identify the biggest refugee crises in the this period of 64 years we have, followed by a
                 dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
-                versus 2022.
+                versus 2020s.
             </p>
         </section>
 
@@ -311,7 +311,7 @@
                 <div class="pros-cons-grid">
 
                     <div class="pros-box">
-                        <h2>Pros</h2>
+                        <h2>PROS</h2>
                         <ul>
                             <li>Covers a long time period (1962-2025)</li>
                             <li>Covers 216 countries</li>
@@ -320,7 +320,7 @@
                     </div>
 
                     <div class="cons-box">
-                        <h2>Limitations</h2>
+                        <h2>LIMITATIONS</h2>
                         <ul>
                             <li>Only tracks international flows</li>
                             <li>Flows are aggregated year-by-year</li>
@@ -333,12 +333,13 @@
             </div>
 
             <p>
-                The dataset tracks three kinds of people: refugees, asylum claimants, and people in refugee-like situations.
+                The dataset tracks four kinds of status: refugees, asylum claimants, and people in refugee-like situations (IOP, ROC).
                 Notably, it does not track internally displaced people, and this is not an insignificant category when talking
                 about forcibly displaced people globally. According to the UNHCR in their
                 <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, internally displaced people
                 accounted for 73.5 million out of the total 123.2 million forcibly displaced people worldwide, approximately 60%, and
-                the percentage has been even higher in previous years.
+                the percentage has been even higher in previous years. As a part of the limitations of our chosendataset, we will only 
+                study internationaldisplacements. 
             </p>
         </section>
 
