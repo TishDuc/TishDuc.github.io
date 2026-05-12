@@ -8,9 +8,8 @@
 
     <style>
         :root {
-            --main-width: 1200px;
+            --main-width: 900px;
             --bg: #eaeaea;
-            --card-bg: rgba(255, 255, 255, 0.78);
             --ink: #2f2f2f;
             --ink-soft: #555;
             --ink-title: #333;
@@ -18,356 +17,534 @@
             --accent-hover: #0f4a3a;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         html, body {
             margin: 0;
             padding: 0;
+            background-color: var(--bg);
         }
 
         body {
             font-family: Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            background-color: var(--bg);
             color: var(--ink);
             overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
         }
 
         .container {
-            text-align: center;
             position: relative;
             z-index: 1;
             max-width: var(--main-width);
-            width: 100%;
+            margin: 0 auto;
             padding: 60px 20px 80px;
         }
 
+        /* --- Intro (scrolls normally) --- */
         .title {
-            font-family: Helvetica, sans-serif;
             font-size: 32px;
             color: var(--ink-title);
             letter-spacing: 1.2px;
             line-height: 1.4;
             font-weight: 400;
-            background-color: transparent;
-            box-shadow: none;
-            border-radius: 0;
+            text-align: center;
             padding: 20px 0 10px;
             margin-bottom: 30px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.15);
         }
 
-        .sub_title {
-            font-family: Helvetica, sans-serif;
-            font-size: 25px;
-            font-weight: 400;
-            color: var(--ink-soft);
-            margin-top: -10px;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        section {
-            max-width: var(--main-width);
-            color: var(--ink-title);
-            margin: 0 auto 36px;
-            background-color: var(--card-bg);
-            padding: 32px 56px;
-            border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
-
-        .text {
+        .intro {
             font-size: 16px;
             line-height: 1.85;
             text-align: left;
-            color: var(--ink);
+            margin-bottom: 60px;
         }
 
-        .text p {
-            margin: 0 0 18px;
+        .intro p { margin: 0 0 18px; }
+
+        .scroll-cue {
+            text-align: center;
+            color: var(--ink-soft);
+            font-style: italic;
+            margin-top: 40px;
+            animation: scroll-cue-bounce 2.4s ease-in-out infinite;
         }
 
-        .text p:last-child {
-            margin-bottom: 0;
+        @keyframes scroll-cue-bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50%      { transform: translateY(6px); opacity: 1; }
         }
 
-        a,
-        section p a {
+        a {
             color: var(--accent);
             text-decoration: underline;
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-            width: auto;
-            font-size: inherit;
-            display: inline;
             transition: color 0.2s ease;
         }
+        a:hover { color: var(--accent-hover); }
 
-        h3 {
-            font-family: Helvetica, sans-serif;
-            font-size: 20px;
-            font-weight: 400;
-            color: #333333;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        a:hover,
-        section p a:hover {
-            color: var(--accent-hover);
-        }
-
-        img,
-        iframe {
-            width: 95%;
-            border: none;
-            border-radius: 10px;
-            display: block;
-            margin: 18px auto 6px; 
-            background-color: #fff;
-        }
-
-        iframe {
-            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
-        }
-
-        .distance_container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-
-            margin: 30px 0;
-
-            flex-wrap: wrap;
-        }
-
-        .distance_box {
-            padding: 14px 28px;
-
-            border: 2px solid #adadad;
-            border-radius: 12px;
-
-            background-color: #fafafa;
-
-            text-align: center;
-
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-
-        .mini-table-wrapper {
-            float: right;
-            margin: 10px 0 20px 25px;
-        }
-
-        .mini-table {
-            border-collapse: collapse;
-            font-size: 13px;
-            background: #ececec;
-            color: rgb(24, 24, 24);
-            border-radius: 8px;
-            overflow: hidden;
-            min-width: 320px;
-        }
-
-        .mini-table th {
-            background: #d1d1d1;
-            padding: 8px 12px;
-            text-align: center;
-        }
-
-        .mini-table td {
-            padding: 8px 12px;
-            border-top: 1px solid #444;
-        }
-
-        .mini-table td:first-child {
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .mini-table td:not(:first-child) {
-            text-align: center;
-        }
-
-        .caption {
-            text-align: center;
-            font-size: 13px;
-            line-height: 1.5;
-            color: var(--ink-soft);
-            margin: 8px 0 22px;
-            font-style: italic;
-        }
-
-        .source {
-        font-size: 13px;
-        line-height: 1.5;
-        color: var(--ink-soft);
-        margin: 0;
-        word-break: break-word;
-        }
-
-        .references {
-            text-align: left;
-            line-height: 1.6;
-            background-color: transparent;
-        }
-
-        .pros-cons-section {
-            max-width: 100%;
-            margin: 24px auto;
-            font-family: inherit;
-        }
-
+        .pros-cons-section { margin: 24px 0; }
         .pros-cons-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
-        .pros-box,
-        .cons-box {
+        .pros-box, .cons-box {
             padding: 18px 22px;
-            border-radius: 10px;
             text-align: left;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
         }
-
-        .pros-box {
-            background-color: var(--bg);
-        }
-
-        .cons-box {
-            background-color: var(--bg);
-        }
-
-        .pros-box h2,
-        .cons-box h2 {
+        .pros-box h2, .cons-box h2 {
             margin: 0 0 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
-            letter-spacing: 0.4px;
-            text-align: center;
-            font-family: "Hevletica Neue", Helvetica, Arial, sans-serif;
         }
-
-        .pros-box ul,
-        .cons-box ul {
+        .pros-box ul, .cons-box ul {
             padding-left: 20px;
             margin: 0;
         }
-
-        .pros-box li,
-        .cons-box li {
+        .pros-box li, .cons-box li {
             margin-bottom: 4px;
             line-height: 1.55;
         }
 
+        /* --- Section breaks between scene groups --- */
+        .section-break {
+            position: relative;
+            z-index: 3;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6vw;
+        }
+
+        .section-break.subtitle {
+            height: 60vh;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4.2vw, 56px);
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            line-height: 1.15;
+            color: var(--ink-title);
+            text-align: center;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-title.subtitle {
+            font-size: clamp(22px, 2.6vw, 36px);
+            font-weight: 400;
+            color: var(--ink-soft);
+            letter-spacing: 0.4px;
+        }
+
+        .section-title.subtitle .label {
+            color: var(--ink-soft);
+            font-style: italic;
+            margin-right: 8px;
+        }
+
+        .section-title.subtitle .name {
+            color: var(--ink-title);
+            font-weight: 500;
+        }
+
+        .section-title.is-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Scrollytelling scenes (Pudding style) ---
+           .scenes breaks out of the .container max-width to use the full
+           viewport. Each .scene reserves scroll height. The fixed graphic
+           fades in/out only at scene boundaries and is repositioned per
+           layout. Text steps live in normal flow and scroll past. */
+        .scenes {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);   /* full-bleed out of container */
+        }
+
+        .scene {
+            position: relative;
+            padding: 25vh 0;
+        }
+
+        .scene-graphic {
+            position: fixed;
+            top: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            z-index: 1;
+        }
+
+        .scene-graphic.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scene-graphic iframe,
+        .scene-graphic img {
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            display: block;
+            background-color: transparent;
+            overflow: hidden;          /* kill iframe internal scrollbars */
+        }
+        .scene-graphic iframe { scrollbar-width: none; }
+        .scene-graphic iframe::-webkit-scrollbar { display: none; }
+
+        /* --- Layout variants for the fixed graphic ---
+           Graphic widths leave ~22vw of clear gutter for text. */
+        .scene-graphic.layout-center {
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54vw;
+            max-width: 900px;
+            height: 78vh;
+        }
+        .scene-graphic.layout-center iframe { width: 100%; height: 100%; }
+        .scene-graphic.layout-center img    { max-height: 78vh; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
+
+        .scene-graphic.layout-left {
+            left: 2vw;
+            transform: translateY(-50%);
+            width: 54vw;
+            height: 78vh;
+            /* Persistent white "plot frame" — all plots live in this same box */
+            background-color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+        }
+        .scene-graphic.layout-left iframe { width: 100%; height: 100%; }
+        .scene-graphic.layout-left img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-height: 78vh;
+            max-width: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* When a plot has its own caption inside the white frame, reserve
+           space at the bottom AND mirror that space at the top so the plot
+           is visually centred between top of box and the caption. Bubble
+           charts (shrink-fit) stay anchored to the top — they rely on
+           transform-origin: top-left, so vertical centring breaks them. */
+        .scene-graphic.layout-left:has(.graphic-caption) iframe {
+            height: calc(100% - 110px);
+            margin-top: 25px;
+        }
+        .scene-graphic.layout-left:has(.graphic-caption) iframe.shrink-fit {
+            height: calc((100% - 60px) * 1.43);
+            margin-top: 0;
+        }
+        .scene-graphic.layout-left:has(.graphic-caption) iframe.bubble-fit {
+            height: calc((100% - 60px) * 1.61);
+            margin-top: 0;
+        }
+        .scene-graphic.layout-left:has(.graphic-caption) img {
+            max-height: calc(78vh - 110px);
+            top: calc(50% - 30px);
+        }
+
+        .graphic-caption {
+            position: absolute;
+            bottom: 14px;
+            left: 20px;
+            right: 20px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .scene-graphic.layout-right {
+            right: 2vw;
+            transform: translateY(-50%);
+            width: 54vw;
+            height: 78vh;
+        }
+        .scene-graphic.layout-right iframe { width: 100%; height: 100%; }
+        .scene-graphic.layout-right img    { max-height: 78vh; width: auto; max-width: 100%; object-fit: contain; }
+
+        /* shrink-fit: for plots whose internal content (e.g. plotly bubble charts)
+           is wider than the visible area. We render the iframe larger than the
+           visible box so the chart isn't clipped, then scale it down visually
+           with CSS transform so the whole plot fits at the original container
+           size — like zooming out inside the chart. */
+        .scene-graphic { overflow: hidden; }
+        .scene-graphic iframe.shrink-fit {
+            width: 143%;
+            height: 143%;
+            transform: scale(0.7);
+            transform-origin: top left;
+        }
+
+        /* Same idea as shrink-fit but scaled to 0.9 (less aggressive zoom-out),
+           used by the bubble distance charts. */
+        .scene-graphic iframe.bubble-fit {
+            width: 161%;
+            height: 161%;
+            transform: scale(0.62);
+            transform-origin: top left;
+        }
+
+        /* Scale-down without changing layout size — used by the country flow
+           maps so they sit smaller inside the white frame. */
+        .scene-graphic iframe.scale-09 {
+            transform: scale(0.9);
+            transform-origin: center center;
+        }
+
+        /* Text steps scroll naturally inside the scene */
+        .scene-steps {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 55vh;
+            padding: 15vh 0;
+            /* let clicks pass through the empty space to the fixed graphic */
+            pointer-events: none;
+        }
+
+        .step,
+        .step a,
+        .step button,
+        .step input,
+        .step table { pointer-events: auto; }
+
+        .step {
+            background: transparent;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--ink);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            width: 20vw;
+            max-width: 320px;
+        }
+
+        .step.is-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* center: graphic centered (54vw) → ~23vw clear gutters on each side.
+           Steps live in those gutters, alternating sides. */
+        .scene[data-layout="center"] .step:nth-child(odd) {
+            margin-left: 2vw;
+            margin-right: auto;
+        }
+        .scene[data-layout="center"] .step:nth-child(even) {
+            margin-left: auto;
+            margin-right: 2vw;
+            text-align: right;
+        }
+
+        /* left: graphic on left half (~56vw incl. offset) → text always on right gutter.
+           Gap plot↔text matches gap text↔page-edge (both 3vw). */
+        .scene[data-layout="left"] .step {
+            margin-left: auto;
+            margin-right: 3vw;
+            width: 38vw;
+            max-width: 520px;
+        }
+
+        /* right: graphic on right half → text always on left gutter */
+        .scene[data-layout="right"] .step {
+            margin-left: 3vw;
+            margin-right: auto;
+            width: 38vw;
+            max-width: 520px;
+        }
+
+        .step h3 {
+            margin: 0 0 12px;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            color: var(--ink-title);
+            line-height: 1.3;
+        }
+
+        .step p { margin: 0 0 10px; }
+        .step p:last-child { margin-bottom: 0; }
+
+        .caption {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            font-style: italic;
+            margin: 4px 0 10px;
+        }
+
+        .source {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            margin: 0 0 10px;
+            word-break: break-word;
+        }
+
+        .case-study-break {
+            height: 70vh;
+            text-align: center;
+        }
+
+        .case-study-text {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .case-study-title {
+            font-size: 35px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            line-height: 1;
+            color: var(--ink-title);
+            margin: 0 0 28px;
+        }
+
+        .case-study-intro {
+            font-size: 18px;
+            line-height: 1.85;
+            color: var(--ink);
+            margin: 0 auto 18px;
+        }
+
+        .case-study-source {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--ink-soft);
+            margin: 0;
+            word-break: break-word;
+        }
+
+        /* Fade-in for case-study heading blocks so they don't overlap the
+           previously-visible plot during scroll. */
+        .case-study-title,
+        .case-study-intro,
+        .case-study-source {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .case-study-title.is-active,
+        .case-study-intro.is-active,
+        .case-study-source.is-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Distance boxes (used in Discussion) ---
+           Stack vertically inside the step so they fit the narrow gutter. */
+        .distance_container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 0;
+        }
+        .distance_box {
+            padding: 12px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.18);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.03);
+            text-align: center;
+            font-size: 15px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        /* --- Conclusion (scrolls normally) --- */
+        .conclusion {
+            font-size: 16px;
+            line-height: 1.85;
+            text-align: left;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.15);
+        }
+        .conclusion p { margin: 0 0 18px; }
+        .conclusion h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 28px 0 10px;
+            color: var(--ink-title);
+        }
+
         @media (max-width: 720px) {
-            section {
-                padding: 24px 22px;
-            }
-
-            .title {
-                font-size: 24px;
-            }
-
-            .pros-cons-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 30px 12px 50px;
-            }
+            .title { font-size: 24px; }
+            .pros-cons-grid { grid-template-columns: 1fr; }
+            .container { padding: 30px 12px 50px; }
+            .scene-graphic iframe { height: 50vh; }
+            .scene-graphic img { max-height: 50vh; }
+            .step { max-width: 100%; }
         }
     </style>
 </head>
 
 <body>
 
-    <canvas id="particles"></canvas>
-
     <div class="container">
 
-        <section class="title">
-            Displacements around the globe from 1962-2025
-            <br>
-        </section>
-        <!--------------------------------------------  INTRO  ----------------------------------------------->
-        <section class="text">
+        <!-- Title + intro scroll normally -->
+        <h1 class="title">Displacements around the globe from 1962-2025</h1>
+
+        <div class="intro">
             <p>
                 The United Nations Refugee Agency (UNHCR) is the largest global organization providing assistance and protection to
                 forcibly displaced and stateless people. It was founded in 1951 in the aftermath of the second World War, and was
-                originally only intended to provide temporary assistance to European refugees. However, over the years, the organisation's
-                mandate has expanded to include people of all nationalities and in all regions of the world. Today, they provide
+                originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
+                mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
                 assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
-                world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people,
-                as well as advocating for their rights and working to find durable solutions to their displacement.
+                world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people, as
+                well as advocating for their rights and working to find durable solutions to their displacement.
             </p>
             <p>
-                The UNHCR publishes their data about forcibly displaced people and updates it every six months. We are going to dive into one of their datasets:
-                the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
-                UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
-                <br>
-                <br>
-                In this study we'll specifically look at where refugees and Asylum seekers go, and how far they travel. In other words, when forced to flee 
-                their country, what are the distances traveled to reach safety?
-
-                We will start with a general analysis to give the reader context, and then study displacement patterns of three crisis: Afhganistan (1979-1989), 
-                Rwanda (1994-1996), and Ukraine (2022-2025). We'll look at the average distances traveled for each and see if, and how, ther are correlated to flows.
+                The UNHCR publishes their data about forcibly displaced people and updates it every six months. We are going to dive
+                into one of their datasets: the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">UNHCR
+                Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
+            </p>
+            <p>
+                In this study we'll specifically look at where refugees and Asylum seekers go, and how far they travel. In other words, 
+                when forced to flee their country, what are the distances traveled to reach safety? We will start with a general analysis 
+                to give the reader context, and then study displacement patterns of three crisis: Afhganistan (1979-1989), Rwanda (1994-1996), 
+                and Ukraine (2022-2025). We'll look at the average distances traveled for each and see if, and how, ther are correlated to flows. 
                 Those three conflicts affect different decades and regions of the world, so we aim to see if there are any differences in displacement 
                 patterns across time and space.
-
             </p>
+
             <p>
                 A behind-the-scenes look into the data analysis used for this article, including source code, can be found here:
-                <br>
-                <a href="https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb">
-                    https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb
-                </a>
+                <a href="https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb">Explainer.ipynb</a>.
             </p>
-        </section>
-
-        <section class="text">
             <p>
-                Let's have a look at our dataset.
-                <br>
-                It consists on over 100 thousand entries and each of hose is a 'flow', with an origin country, a destination country, 
-                and a number of people registered.
+                Let's have a look at our dataset. It consists of over 100 thousand entries and each of those is a 'flow', with an origin
+                country, a destination country, and a number of people registered.
             </p>
 
             <div class="pros-cons-section">
                 <div class="pros-cons-grid">
-
                     <div class="pros-box">
                         <h2>PROS</h2>
                         <ul>
-                            <li>Covers a long time period, 64 years (1962-2025)</li>
+                            <li>Covers a long time period (1962-2025), 64 years</li>
                             <li>Covers 216 countries</li>
                             <li>Reliable source (UNHCR)</li>
+                            <li>Regularly updated</li>
                             <li>The data is largely complete and clean</li>
                         </ul>
                     </div>
-
                     <div class="cons-box">
                         <h2>LIMITATIONS</h2>
                         <ul>
@@ -378,445 +555,582 @@
                             <li>Flows are aggregated year-by-year</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
 
             <p>
                 The dataset tracks four kinds of status: refugees, asylum claimants, and people in refugee-like situations (IOP, ROC).
-                Notably, it does not track internally displaced people, and this is not an insignificant category when talking
-                about forcibly displaced people globally. According to the UNHCR in their
+                Notably, it does not track internally displaced people, and this is not an insignificant category. According to the UNHCR
                 <a href="https://www.unhcr.org/global-trends-report-2024">2024 Global Trends Report</a>, internally displaced people
                 accounted for 73.5 million out of the total 123.2 million forcibly displaced people worldwide, approximately 60%, and
-                the percentage has been even higher in previous years. As a part of the limitations of our chosen dataset, we will only 
-                study international displacements. 
+                the percentage has been even higher in previous years. As part of the limitations of our chosen dataset, we will only
+                study international displacements.
             </p>
-        </section>
+            <p class="scroll-cue">
+                Scroll down to dive in ↓
+            </p>
+        </div>
 
-        <!-------------------------------------------- WORLD MAP ----------------------------------------------->
+        <!-- Scrollytelling scenes: graphic stays fixed, text steps scroll past -->
+        <div class="scenes">
 
-        <section class="text">
-            <p>
-                Now, let's dive in! We begin with a flow map of all the data for the whole period. We invite the reader to 
-                familiarize themselves with the map and explore the different flows. You can select specific years to see 
-                how the flows evolved over time, and hover over the different countries and arrows to see exact numbers.
-            </p>
-            <iframe src="visualizations/Top_100_displacements_flow_map.html" height="600"></iframe>
-            <p class="caption">
-                Animated map showing displacement flows each year from 1962-2025. Countries are colored based on total outgoing
-                flows, and flow arrows are colored based on the number of people in the flow. All flows are included for the
-                country gradients, but only the 100 largest flows for each year are indicated with arrows. The timeline at the
-                bottom allows you to select a specific year and see the flows for that year.
-            </p>
-            <!---------------------------------------------->
-            <p>
-                By scrolling through the years, it becomes easy to observe the increase in both the amount of data and the number of flow lines. 
-                The number of registered displaced people grows over time, while their geographic origins also become increasingly diverse.
-                You can see some of the major conflicts of recent history mapped out quite clearly: 
-                Vietnam, Afghanistan, Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
-                of news coverage about some of them, and others may have flown under your radar. So, instead of only manually looking for
-                crises we recognize, we'll let the data tell us when and where the crises occurred.
-            </p>
-            <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg" />
-            <p class="caption">
-                Top 12 displacement crisis from 1962-2025, ranked by total number of people displaced during the episode. Each row
-                is defined as a continuous period of time with an outgoing flow of displacements above the median value
-                for that country (with a lower threshold of at least 10,000 people per year).
-            </p>
-            <p>
-                From our dataset, the graph shows the top 12 episodes all occurred after 1977. Our largest recorded episode is the Syrian Civil War,
-                with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice in our chart, because we detected two separate
-                crisis episodes, corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021. With this example, 
-                we'll note that displacement flows don't necessarily line up exactly with the conflict periods.
-                <br>
-                <br>
-                In this next section, we'll study three of these episodes in more detail, and have a look at where refugees and asylum seekers flee to. 
-                Let's study distances traveled and see if there are any differences in the patterns of displacement across time.
-            </p>
-        </section>
+            <div class="section-break">
+                <h2 class="section-title">A global look</h2>
+            </div>
+
+            <section class="scene" data-graphic="g-global" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>A global view, 1962-2025</h3>
+                        <p>
+                            We begin with a flow map of all the data for the whole period. We invite the reader to familiarize 
+                            themselves with the map and explore the different flows. You can select specific years to see how the 
+                            flows evolved over time, and hover over the different countries and arrows to see exact numbers.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                           By scrolling through the years, it becomes easy to observe the increase in both the amount of data and the 
+                           number of flow lines. The number of registered displaced people grows over time, while their geographic origins 
+                           also become increasingly diverse. You can see some of the major conflicts of recent history mapped out quite clearly: 
+                           Vietnam, Afghanistan, Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may 
+                           have seen a lot of news coverage about some of them, and others may have flown under your radar. So, instead of only manually 
+                           looking for crises we recognize, we'll let the data tell us when and where the crises occurred.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-top10" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>The twelve largest episodes</h3>
+                        <p>
+                            From our dataset, the graph shows the top 12 episodes all occurred after 1977. Our largest recorded episode is the Syrian Civil 
+                            War, with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice in our chart, because we detected two 
+                            separate crisis episodes, corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021. 
+                            With this example, we'll note that displacement flows don't necessarily line up exactly with the conflict periods.
+
+                        </p>
+                    </div>
+                </div>
+            </section>
 
         <!------------------------------------------------- CASE STUDIES ----------------------------------------------->
 
+            <div class="section-break case-study-break">
+                <div class="case-study-text">
+                    <h2 class="section-title">Case studies</h2>
+                    <p class="case-study-intro">
+                        In this next section, we'll study three of these episodes in more detail, and have a look at where refugees and asylum 
+                        seekers flee to. Let's study distances traveled and see if there are any differences in the patterns of displacement across time.
+                    </p>
+                </div>
+            </div>
+
 
         <!-------------------- AFGHANISTAN ----------------------->
-            <section class="text">
+            <div class="section-break case-study-break">
+                <div class="case-study-text">
+                    <h2 class="case-study-title">AFGHANISTAN</h2>
 
-                <h2 class="sub_title">
-                    AFGHANISTAN 1980-1988:
-                </h2>
+                    <p class="case-study-intro">
+                        The Soviet-Afghan war took place in Afghanistan from December 1979 to February 1989. Though the conflict officially 
+                        ends in 1989, the instability persisted long afterward and continued after the U.S. invasion in 2001. These decades of sustained 
+                        instability produced one of the world's largest and most prolonged refugee crises.
+                    </p>
 
-                <p>
-                    The Soviet-Afghan war took place in Afghanistan from December 1979 through February 1989. Though the conflict officially
-                    ends in 1989, the instability persisted long afterward and continued after the U.S. invasion in 2001. These decades of sustained 
-                    instability produced one of the world's largest and most prolonged refugee crises.
-
-                    <span class="source">
+                    <p class="case-study-source">
                         source: UNHCR -
-                        <a href="https://www.unhcr.org/where-we-work/countries/afghanistan?utm_source=chatgpt.com&dataset=POP&yearsMode=range&selectedYears=%5B2012%2C2026%5D&level=OPR&category=PTY&fundingSource=ALS&compareBy=%5B%22category%22%5D%5D&levelCompare=%5B%5B%22OAFG_ABC%22%5D%5D&viewType=chart&chartType=bar&contextualDataset=BUD&tableDataView=absolute">
-                            https://www.unhcr.org/where-we-work/countries/afghanistan
+                        <a href="https://www.unhcr.org/where-we-work/countries/afghanistan?utm_source=chatgpt.com&dataset=POP&yearsMode=range&selectedYears=%5B2012%2C2026%5D&level=OPR&category=PTY&fundingSource=ALS&compareBy=%5B%22category%22%5D&levelCompare=%5B%5B%22OAFG_ABC%22%5D%5D&viewType=chart&chartType=bar&contextualDataset=BUD&tableDataView=absolute">
+                        https://www.unhcr.org/where-we-work/countries/afghanistan
                         </a>
-                    </span>
-                </p>
-
-                <p>
-                    "In fact, Afghanistan has experienced one of the world's largest refugee crises for more than two decades. 
-                    Between the Soviet invasion of Afghanistan in 1979 and the present day, <b>one in four Afghans has been a
-                    refugee</b>. At the peak of the crisis in the late 1980s, there were more than six million Afghan refugees."
-
-                    <span class="source">
-                        source:
-                        <a href="https://www.fmreview.org/ruiz/">
-                            The Forced Migration Review
-                        </a>
-                    </span>
-                </p>
-
-                <p>
-                    <!--
-                    The soviets started their occupation (between 1980 - 1985) with a "scorched earth campaign", which aimed to cut
-                    any support the mujahideen (religious Afghan freedom fighters) might have in the region. This implied the 
-                    destruction of crops, irrigation systems, and villages and affected local population terribly. By the end of 1981,
-                    the widespread destruction of civilian infrastructure further intensified displacement and cross-border asylum movements.
-                    
-                    <span class="source">
-                        source:
-                        <a href="https://journals.lib.unb.ca/index.php/jcs/article/view/4356/5011">
-                            This article written by History professor Edward B. Westermann
-                        </a>
-                    </span>
-                    
-                    "Soviet attempts to intimidate the civil population involved a joint air-land effort. The intensive bombardment of 
-                    villages [...] served as the prelude for the entry of mechanized and armored forces into the area. These forces then
-                    proceeded to conduct a "scorched earth" campaign by destroying the local dwellings, food supplies, crops in the field, 
-                    irrigation systems, livestock and wells. One Swedish official, after visiting several villages destroyed by the Soviets 
-                    noted, "Russian soldiers shot at anything alive in six villages -- people, hens, donkeys - and then they plundered what 
-                    remained of value." These Soviet operations aimed at driving the villagers out of these areas in an effort to create 
-                    a cordon sanitaire in which the insurgents would find no support"
-                    -->
-                <iframe src="visualizations/afghanistan_flows.html" height="650"></iframe>
-                <p class="caption">
-                    Flow of refugee and asylum seekers fleeing Afghanistan between 1980 and 1988.
-                </p>
-
-                <p>
-                    While the conflict lasted from 1979 to 1989, we detected that the period with the most forced displacement
-                    was 1980-1988. Looking at the map, three things stand out immediately:
-                    <br>
-                    1) The sheer number of people fleeing the country, with some years seeing over 2 million people displaced.
-                    <br>
-                    2) The nearby countries of Iran and Pakistan standing out in dark red, accepting the vast majority of Afghan
-                    refugees.
-                    <br>
-                    3) A few other countries took in the other refugees, but they are in very small amounts
-                </p>
-
-                <iframe src="visualizations/sankey_afg_1980_1988.html" height="550"></iframe>
-                <p class="caption">
-                    Sankey diagram showing the flow of refugees from Afghanistan to different destination countries between 1980 and 1988.
-                </p>
-
-                <p>
-                    The sankey diagram above confirms just how much of the refugee flow from Afghanistan was concentrated
-                    in just two countries, Pakistan and Iran. Pakistan took the most at almost 3.2 million, followed by Iran at nearly 2.5 million,
-                    and the ext follow up is Germany, in third  with only 21.743. Denmark at took in 272 people.
-
-                    The distances in this Sankey plot (and the Bubble plot that follows) are calculated from the geographic center of Afghanistan 
-                    to the border of the recipient country. In this chart, we begin to see the relationship between distance and refugee 
-                    volume. The two countries that received the largest number of refugees are also the geographically closest to Afghanistan, 
-                    with Pakistan's border located 319 km away, and Iran's 405 km away. 
-                </p>
-
-                <p>
-                    Let's have a closer look at the average distance traveled by refugees to flee this conflict:
-                </p>
-
-                <iframe src="visualizations/afghanistan_distance_vs_count.html" height="650"></iframe>
-                <p class="caption">
-                    Bubble chart showing the relationship between distance traveled and number of refugees.
-                    Each bubble represents a flow of refugees from Afghanistan to a specific destination country over the conflict period.
-                    Bigger bubbles indicate a larger number of refugees. You can hover over each bubble to see the exact distance and number of refugees.
-                </p>
-
-                <p>
-                    An important disclaimer in computing distances traveled is that we don't know exactly how far each refugee actually traveled. We can only 
-                    compute rough approximation, and it doesn't take into account the fact that refugees may have traveled to different parts of 
-                    the destination country, or that they may have taken indirect routes to get there. However,it still gives us a general idea of 
-                    the relationship between distance and number of refugees.
-                    <br>
-                    <br>
-                    We see the bubbles clustered on the left-hand side of the chart, which shows again most recipient countries were geographically nearby.
-                    Again, we see Pakistan and Iran completely dominate. A few European countries also appear, but the numbers are small compared to the 
-                    whopping 5.7 million that the neighbouring countries received.
-                </p>
-                
-                <div class="distance_box">
-                    Our weighted calculations estimate that Afghan refugees in the period 1980-1988 traveled an average 383 kilometers to reach safety.
+                    </p>
                 </div>
+            </div>
 
-        </section>
+            <section class="scene" data-graphic="g-afg" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            While the conflict lasted from 1979 to 1989, we detected that the period with the most forced displacement
+                            was 1980–1988. Looking at the map, three things stand out immediately:
+                        </p>
+                        <ol>
+                            <li>The sheer number of people fleeing the country, with some years seeing over 2 million people displaced.</li>
+                            <li>The nearby countries of Iran and Pakistan standing out in dark red, accepting the vast majority of Afghan refugees.</li>
+                            <li>A few other countries took in the other refugees, but they are in very small amounts.</li>
+                        </ol>
+                    </div>
+                    <div class="step">
+                        <p>
+                            "In fact, Afghanistan has experienced one of the world's largest refugee crises for more than two decades.
+                            Between the Soviet invasion of Afghanistan in 1979 and the present day, <strong>one in four Afghans has
+                            been a refugee</strong>. At the peak of the crisis in the late 1980s, there were more than six million
+                            Afghan refugees."
+                        </p>
+                        <p class="source">
+                            source: <a href="https://www.fmreview.org/ruiz/">The Forced Migration Review</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-        <section class="text">
-            <h2 class="sub_title">
-                RWANDA 1994-1996:
-            </h2>
-            <p>
-                The Rwandan genocide, also known as the Tutsi genocide, occurred from 7 April to 19 July 1994 during the Rwandan Civil War.
-                Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically 
-                killed by Hutu militias. An estimated 800,000 Rwandans were killed.
-                <span class="source">
-                    source: BBC -
-                    <a href="https://www.bbc.com/news/world-africa-26875506">
-                        Rwanda genocide: 100 days of slaughter
-                    </a>
-                </span>
-                Note that Rwanda's population only numbered 7 million people in 1994.
-                <span class="source">
-                    source: US Holocaust Memorial Museum -
-                    <a href="https://www.ushmm.org/genocide-prevention/countries/rwanda/divided-by-ethnicity">
-                        Divided by Ethnicity
-                    </a>
-                </span>
-                The genocide was marked by extreme violence, with victims often murdered by neighbours, and widespread sexual violence. It ended when 
-                the Tutsi-led Rwandan Patriotic Front (RPF) won the civil war, but refugees continued to leave the country in the following years. 
-                The genocide was followed by the First Congo War in 1996, a conflict between the new RPF government and the Democratic Republic of the Congo.
-            </p>
-            <iframe src="visualizations/rwanda_flows.html" height="600"></iframe>
-            <p class="caption">
-                Flow of refugees and asylum seekers fleeing Rwanda between 1994 and 1996.
-            </p>
+            <section class="scene" data-graphic="g-afg-sankey" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            The sankey diagram to the left confirms just how much of the refugee flow from Afghanistan was concentrated 
+                            in just two countries, Pakistan and Iran. Pakistan took the most at almost 3.2 million, followed by Iran at 
+                            nearly 2.5 million, and the ext follow up is Germany, in third with only 21.743. Denmark at took in 272 people. 
+                            The distances in this Sankey plot (and the Bubble plot that follows) are calculated from the geographic center 
+                            of Afghanistan to the border of the recipient country. In this chart, we begin to see the relationship between 
+                            distance and refugee volume. The two countries that received the largest number of refugees are also the geographically 
+                            closest to Afghanistan, with Pakistan's border located 319 km away, and Iran's 405 km away.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-            <p>
-                The map shows a massive exodus of more than 2 million people in 1994, the year the genocide occurred. 1995 was a relatively quiet year,
-                although we still see more than 34,000 people depart to Burundi. Then, when the First Congo War breaks out in 1996, we see another
-                85,000 people leaving. We invite the reader to explore the map and hover over the different flows to see the exact numbers.
-            </p>
-            <iframe src="visualizations/sankey_rwa_1994_1996.html" height="550"></iframe>
-            <p class="caption">
-                Sankey diagram showing the flow of refugees from Rwanda to different destination countries between 1994 and 1996.
-            </p>
-            <p>
-                Looking at this graph, we notice that Rwandan refugees overwhelmingly fled to neighbouring countries. Over the studies period of time
-                1.4 million Rwandans fled to the Democratic Republic of the Congo, 700,000 fled to Tanzania, and 294,000 fled to Burundi. We note that
-                Rwanda is only 70km away from the Tanzanian border, only 84km away from DRCongo, and only 44km away from Burundi
-                
-                A few other countries make the list, most of which are African countries (Uganda, South Africa, Malawi, and the Central 
-                African Republic), some located ober 800 km awar from Rwanda. Of the European countries, Belgium was the biggest recipient, 
-                being over 6.000 km away they oinly took in 1,369 Rwandans. 
+            <section class="scene" data-graphic="g-afg-dist" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>How far do people go?</h3>
+                        <p>
+                            Let's have a closer look at the average distance traveled by refugees to flee this conflict. An important disclaimer 
+                            in computing distances traveled is that we don't know exactly how far each refugee actually traveled. We can only compute 
+                            rough approximation, and it doesn't take into account the fact that refugees may have traveled to different parts of the 
+                            destination country, or that they may have taken indirect routes to get there. However,it still gives us a general idea of 
+                            the relationship between distance and number of refugees.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            We see the bubbles clustered on the left-hand side of the chart, which shows again most recipient countries were 
+                            geographically nearby. Again, we see Pakistan and Iran completely dominate. A few European countries also appear, 
+                            but the numbers are small compared to the whopping 5.7 million that the neighbouring countries received.
+                        </p>
+                        <div class="distance_box">
+                            Our weighted calculations estimate that Afghan refugees in the period 1980-1988 traveled an average 383 kilometers to reach safety.
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            </p>
 
-            <iframe src="visualizations/rwanda_distance_vs_count.html" height="650"></iframe>
-            <p class="caption">
-                Bubble chart showing the relationship between distance traveled and number of refugees.
-                Each bubble represents a flow of refugees from Rwanda to a specific destination country over the conflict period.
-                Bigger bubbles indicate a larger number of refugees. You can hover over each bubble to see the exact distance and number of refugees.
-            </p>
-            <p>
-                For Rwanda and it's neighboring countries, the picture is similar to the one painted for Afghanistan: the recipient (and neighboring) countries 
-                overwhelmingly cluster on the left-hand side. Rwandan refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and the vast size of
-                the DR Congo and Tanzania, we consider the rough average somewhat less reliable for Rwanda.
-            </p>
 
-        <div class="distance_box">
-         Rwandan refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and the 
-         vast size of the DR Congo and Tanzania, we consider the rough average somewhat less reliable for Rwanda.
+        <!-------------------- RWANDA ----------------------->
+            <div class="section-break case-study-break">
+                <div class="case-study-text">
+                    <h2 class="case-study-title">RWANDA</h2>
+                    <p class="case-study-intro">
+                        The Rwandan genocide, also known as the Tutsi genocide, occurred from 7 April to 19 July 1994 during the
+                        Rwandan Civil War. Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate
+                        Hutu and Twa, were systematically killed by Hutu militias. An estimated 800,000 Rwandans were killed.
+                    </p>
+                    <p class="case-study-source">
+                        source: BBC —
+                        <a href="https://www.bbc.com/news/world-africa-26875506">Rwanda genocide: 100 days of slaughter</a>
+                    </p>
+                </div>
+            </div>
+
+            <section class="scene" data-graphic="g-rwa" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            Note that Rwanda's population only numbered 7 million people in 1994.
+                        </p>
+                        <p class="source">
+                            source: US Holocaust Memorial Museum —
+                            <a href="https://www.ushmm.org/genocide-prevention/countries/rwanda/divided-by-ethnicity">Divided by Ethnicity</a>
+                        </p>
+                        <p>
+                            The genocide was marked by extreme violence, with victims often murdered by neighbours, and widespread sexual
+                            violence. It ended when the Tutsi-led Rwandan Patriotic Front (RPF) won the civil war, but refugees continued
+                            to leave the country in the following years. The genocide was followed by the First Congo War in 1996, a
+                            conflict between the new RPF government and the Democratic Republic of the Congo.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            The map shows a massive exodus of more than 2 million people in 1994, the year the genocide occurred. 1995
+                            was a relatively quiet year, although we still see more than 34,000 people depart to Burundi. Then, when the
+                            First Congo War breaks out in 1996, we see another 85,000 people leaving. We invite the reader to explore the 
+                            map and hover over the different flows to see the exact numbers.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-rwa-sankey" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            Looking at this graph, we notice that Rwandan refugees overwhelmingly fled to neighbouring countries. Over the 
+                            studies period of time 1.4 million Rwandans fled to the Democratic Republic of the Congo, 700,000 fled to Tanzania, 
+                            and 294,000 fled to Burundi. We note that Rwanda is only 70km away from the Tanzanian border, only 84km away from DRCongo, 
+                            and only 44km away from Burundi A few other countries make the list, most of which are African countries (Uganda, South Africa, 
+                            Malawi, and the Central African Republic), some located ober 800 km awar from Rwanda. Of the European countries, Belgium was 
+                            the biggest recipient, being over 6.000 km away they oinly took in 1,369 Rwandans.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-rwa-dist" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>How far do people go?</h3>
+                        <p>
+                            For Rwanda and it's neighboring countries, the picture is similar to the one painted for Afghanistan: the recipient (and neighboring)
+                            countries overwhelmingly cluster on the left-hand side. Rwandan refugees in this period traveled an average of 83 kilometers to 
+                            reach safety. However, given the small size of Rwanda and the vast size of the DR Congo and Tanzania, we consider the rough average 
+                            somewhat less reliable for Rwanda.
+                        </p>
+                        <div class="distance_box">
+                            Rwandan refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and
+                            the vast size of the DR Congo and Tanzania, we consider the rough average somewhat less reliable for Rwanda.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        <!-------------------- UKRAINE ----------------------->
+            <div class="section-break case-study-break">
+                <div class="case-study-text">
+                    <h2 class="case-study-title">UKRAINE</h2>
+                    <p class="case-study-intro">
+                        In February 2022, Russia launched a full-scale invasion of Ukraine, leading to the bloodiest conflict in Europe
+                        since World War II, and a humanitarian crisis which caused the third-biggest wave of refugees in modern history.
+                    </p>
+                    <p class="case-study-source">
+                        source: Council on Foreign Relations —
+                        <a href="https://www.cfr.org/backgrounders/ukraine-conflict-crossroads-europe-and-russia">Ukraine: Conflict at the Crossroads of Europe and Russia</a>
+                    </p>
+                </div>
+            </div>
+
+            <section class="scene" data-graphic="g-ukr" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            The conflict has resulted in widespread destruction, loss of life, and millions forced to flee. Of the three
+                            case studies, this is by far the one that got the most media coverage, and we imagine that most readers of
+                            this article have some degree of familiarity with it. The conflict is ongoing, so we don't have the whole
+                            story yet, but we can already see some interesting differences in the patterns of displacement compared to
+                            the previous two case studies.
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>
+                            Immediately, we see a completely different picture for the Ukraine war than for the previous two conflicts.
+                            The map shows that Ukrainians fled to a broad range of countries, including some quite far away. For example,
+                            Canada received 75,157 Ukrainian refugees in the first year of the conflict, and Spain received 156,923.
+                            Displacements peak in 2022 where millions of Ukrainians flee, but they continue to be high in the following
+                            years.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-ukr-sankey" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>
+                            The sankey diagram confirms the differences. For the first time, we see a country that is not a direct
+                            neighbour of the conflict (Germany) at number one, receiving 1.4 million Ukrainians. The immediate
+                            neighbours of Poland and Russia do receive 1.4 and 1.3 million refugees respectively, but are then followed
+                            by Czechia at 640,000, another country that does not border Ukraine. The rest of the list is a mix of
+                            European countries, some close (Moldova, Romania, Bulgaria) and some further away (the UK, Spain, Italy).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="scene" data-graphic="g-ukr-dist" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <h3>How far do people go?</h3>
+                        <p>
+                            The bubble chart shows a much more even distribution of recipient countries across the distance spectrum. 
+                            The average distance traveled is more than three times the average distance traveled by Afghan refugees 
+                            in the 1980s, and more than 14 times the average distance traveled by Rwandan refugees in the 1990s.
+                        </p>
+                        <div class="distance_box">
+                            The average distance traveled by Ukrainian refugees in this period was 1,172 kilometers
+                        </div>                        
+                    </div>
+                </div>
+            </section>
+
+            <!-------------------- DISCUSSION ----------------------->
+            <div class="section-break case-study-break">
+                <div class="case-study-text">
+                <h2 class="section-title">Discussion</h2>
+                <p class="case-study-intro">
+                        After taking a closer look at our case studies, we can see a clear pattern emerging. Not too surprisingly,
+                        people seem to "favor" proximity in times of crisis. In all three cases the immediate neighbouring countries
+                        received the vast majority of displaced people. On average, the further a country is from the observed
+                        conflict, the fewer refugees tend to seek refuge there. This was made clear by the bubble plots in each of
+                        the case studies.
+                    </p>
+                </div>
+            </div>
+
+            <section class="scene" data-graphic="g-avg-dist" data-layout="left">
+                <div class="scene-steps">
+                    <div class="step">
+                        <p>Here are the average distances to summarize:</p>
+                        <div class="distance_container">
+                            <div class="distance_box">Afghanistan — 383.64 km traveled</div>
+                            <div class="distance_box">Rwanda — 83.30 km traveled</div>
+                            <div class="distance_box">Ukraine — 1172.42 km traveled</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <p>
+                            However, in our Ukraine case study we also saw a clear difference in how far refugees were willing (or able)
+                            to travel. Of course, with the method we're using to calculate distances, the size of the origin country
+                            plays a big role. But Afghanistan has a larger land area than Ukraine, and yet the average distance traveled
+                            by Ukrainian refugees was three times that of the Afghans. We're starting to form a hypothesis that something
+                            has changed over the years, so let's investigate:
+                        </p>
+                    </div>
+                    <div class="step">
+                        <p>We notice three distinct "steps" in this plot:</p>
+                        <ul>
+                            <li><strong>1962 – ~1973:</strong> refugees and asylum seekers would travel between 500 and 900 km to seek safety.</li>
+                            <li><strong>1973 – 1989:</strong> we observe a progressive increase in distance travelled, from around 700 km to nearly 4,000 km.</li>
+                            <li><strong>1989 – present:</strong> the average per year has stagnated, varying slightly between 4,000 km and 4,500 km.</li>
+                        </ul>
+                        <p>
+                            What could explain this jump between 1973 and 1989? We initially suspected it to be correlated to the sheer
+                            increase of displacement data, but we think we can rule that out after adding the total displacement to the graph. There seems 
+                            to be no obvious correlation between an increase in displacement data and distance traveled. But then, what could it be?
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-break">
+                <h2 class="section-title">A hypothesis</h2>
+            </div>
+
         </div>
 
-        </section>
-
-        <section class="text">
-            <h2 class="sub_title">
-                UKRAINE 2022-2025
-            </h2>
-            <p>
-                In February 2022, Russia launched a full-scale invasion of Ukraine, leading to the bloodiest conflict in Europe since World War II,
-                and a humanitarian crisis which caused the third-biggest wave of refugees in modern history.
-                <span class="source">
-                    source: Council on Foreign Relations -
-                    <a href="https://www.cfr.org/backgrounders/ukraine-conflict-crossroads-europe-and-russia">
-                        Ukraine: Conflict at the Crossroads of Europe and Russia
-                    </a>
-                </span>
-                The conflict has resulted in widespread destruction, loss of life, and millions forced to flee. Of the three case studies,
-                this is by far the one that got the most media coverage, and we imagine that most readers of this article have some degree of familiarity
-                with it. The conflict is ongoing, so we don't have the whole story yet, but we can already see some interesting differences in the
-                patterns of displacement compared to the previous two case studies.
-            </p>
-            <iframe src="visualizations/ukraine_flows.html" height="600"></iframe>
-            <p>
-                Immediately, we see a completely different picture for the Ukraine war than for the previous two conflicts. The map shows that Ukrainians
-                fled to a broad range of countries, including some quite far away. For example, Canada received 75,157 Ukrainian refugees in the first year
-                of the conflict, and Spain received 156,923. Displacements peak in 2022 where millions of Ukrainians flee, but they continue to be high in
-                the following years.
-            </p>
-            <iframe src="visualizations/sankey_ukr_2022_2025.html" height="550"></iframe>
-            <p class="caption">
-                Sankey diagram showing the flow of refugees from Ukraine to different destination countries between 2022 and 2025.
-            </p>
-            <p>
-                The sankey diagram confirms the differences. For the first time, we see a country that is not a direct neighbour of the conflict (Germany) at
-                number one, receiving 1.4 million Ukrainians. The immediate neighbours of Poland and Russia do receive 1.4 and 1.3 million refugees
-                respectively, but are then followed by Czechia at 640,000, another country that does not border Ukraine. The rest of the list is a mix of
-                European countries, some close (Moldova, Romania, Bulgaria) and some further away (the UK, Spain, Italy).
-            </p>
-            <iframe src="visualizations/ukraine_distance_vs_count.html" height="900"></iframe>
-            <p class="caption">
-                Bubble chart showing the relationship between distance traveled and number of refugees.
-                Each bubble represents a flow of refugees from Ukraine to a specific destination country over the conflict period.
-                Bigger bubbles indicate a larger number of refugees. You can hover over each bubble to see the exact distance and number of refugees.
-            </p>
-            <p>
-                The bubble chart shows a much more even distribution of recipient countries across the distance spectrum. The average distance traveled by Ukrainian
-                refugees in this period was 1,172 kilometers, which is more than three times the average distance traveled by Afghan refugees in the 1980s, and
-                more than 14 times the average distance traveled by Rwandan refugees in the 1990s.
-            </p>
-        </section>
-    <!-------------------------------------------- DISCUSSION / CONCLUSION ----------------------------------------------->
-        <section class="text">
-
-
-                <h2 class="sub_title">
-                    DISCUSSION:
-                </h2>
-
-            <p>
-                After taking a closer look at our case studies, we can see a clear pattern emerging.
-                Not too surprisingly, people seem to "favor" proximity in times of crisis. In all three cases the immediate neighbouring
-                countries received the vast majority of displaced people. On average the furthest a country is from the observed conflict,
-                the less refugees tend to seek refuge there. This was made clear by the bubble plots in each of the case studies.
-                <br>
-                <br>
-                Here are the average distances to summarize:
-                <br>            
-                 <div class="distance_container">
-                    <div class="distance_box">
-                        Afghanistan — 383.64 km traveled
-                    </div>
-
-                    <div class="distance_box">
-                        Rwanda — 83.30 km traveled
-                    </div>
-
-                    <div class="distance_box">
-                        Ukraine — 1172.42 km traveled
-                    </div>
+        <!-- Fixed graphics pool: one per scene, identified by data-graphic.
+             iframes use data-src for lazy-loading — actual src is set by the
+             scene observer the first time a scene becomes visible. -->
+        <div class="graphics-pool">
+            <div class="scene-graphic" id="g-global">
+                <iframe data-src="visualizations/Top_100_displacements_flow_map.html" title="Animated displacement flow map, 1962–2025" scrolling="no"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-top10">
+                <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg" alt="Top 12 displacement episodes ranked by total people displaced, 1962–2025" />
+            </div>
+            <div class="scene-graphic" id="g-afg">
+                <iframe data-src="visualizations/afghanistan_flows.html" title="Refugee flows from Afghanistan, 1980–1988" scrolling="no" class="scale-09"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-afg-sankey">
+                <iframe data-src="visualizations/sankey_afg_1980_1988.html" title="Sankey diagram of refugee flows from Afghanistan, 1980–1988" scrolling="no"></iframe>
+                <div class="graphic-caption">
+                    Sankey diagram showing the flow of refugees from Afghanistan to different destination countries between 1980 and 1988.
                 </div>
+            </div>
+            <div class="scene-graphic" id="g-afg-dist">
+                <iframe data-src="visualizations/afghanistan_distance_vs_count.html" title="Distance traveled vs number of refugees from Afghanistan" scrolling="no" class="bubble-fit"></iframe>
+                <div class="graphic-caption">
+                    Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Afghanistan to a specific destination country over the conflict period. Bigger bubbles indicate more refugees. Hover over a bubble for exact values.
+                </div>
+            </div>
+            <div class="scene-graphic" id="g-rwa">
+                <iframe data-src="visualizations/rwanda_flows.html" title="Refugee flows from Rwanda, 1994–1996" scrolling="no" class="scale-09"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-rwa-sankey">
+                <iframe data-src="visualizations/sankey_rwa_1994_1996.html" title="Sankey diagram of refugee flows from Rwanda, 1994–1996" scrolling="no"></iframe>
+                <div class="graphic-caption">
+                    Sankey diagram showing the flow of refugees from Rwanda to different destination countries between 1994 and 1996.
+                </div>
+            </div>
+            <div class="scene-graphic" id="g-rwa-dist">
+                <iframe data-src="visualizations/rwanda_distance_vs_count.html" title="Distance traveled vs number of refugees from Rwanda" scrolling="no" class="bubble-fit"></iframe>
+                <div class="graphic-caption">
+                    Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Rwanda to a specific destination country over the conflict period.
+                </div>
+            </div>
+            <div class="scene-graphic" id="g-ukr">
+                <iframe data-src="visualizations/ukraine_flows.html" title="Refugee flows from Ukraine, 2022–2025" scrolling="no" class="scale-09"></iframe>
+            </div>
+            <div class="scene-graphic" id="g-ukr-sankey">
+                <iframe data-src="visualizations/sankey_ukr_2022_2025.html" title="Sankey diagram of refugee flows from Ukraine, 2022–2025" scrolling="no"></iframe>
+                <div class="graphic-caption">
+                    Sankey diagram showing the flow of refugees from Ukraine to different destination countries between 2022 and 2025.
+                </div>
+            </div>
+            <div class="scene-graphic" id="g-ukr-dist">
+                <iframe data-src="visualizations/ukraine_distance_vs_count.html" title="Distance traveled vs number of refugees from Ukraine" scrolling="no" class="bubble-fit"></iframe>
+                <div class="graphic-caption">
+                    Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Ukraine to a specific destination country over the conflict period.
+                </div>
+            </div>
+            <div class="scene-graphic" id="g-avg-dist">
+                <iframe data-src="visualizations/total_displaced_vs_average_distance_comparison.html" title="Average distance traveled and total displaced over time, 1962–2025" scrolling="no" class="shrink-fit"></iframe>
+                <div class="graphic-caption">
+                    The line shows the average distance traveled by refugees and asylum seekers to their destination country over time. Distance is computed from the centroid of the origin country to the border of the destination country. The histogram shows the total number of people displaced for each year.
+                </div>
+            </div>
+        </div>
 
+        <!-- Conclusion scrolls normally -->
+        <div class="conclusion">
+            
+            <h3>Revolution of commercial flights in the 70s</h3>
+            <p>
+                Back in the 50's and 60's commercial long-haul flights were not yet widely available, and international travel was
+                essentially for business travelers and the wealthy percentage of society. "A coast-to-coast round trip cost around $260,
+                about half of the price of a new automobile," says
+                <a href="https://airandspace.si.edu/explore/stories/evolution-commercial-flying-experience">The National Air and Space Museum</a>.
+                "Yet, new carriers emerged, and new technology began to revolutionize civil aviation."
+            </p>
+            <p>
+                Long-haul flights became more accessible from 1969 when a new wide-body "jumbo jets" Boeing 747 was introduced on the market. Since 
+                the aircraft was much larger than previous models, it significantly increased passenger capacity and lowered costs. What used to be an 
+                elite luxury became more affordable for middle class compared to previous decades. "This was not only a milestone in aircraft manufacturing, 
+                but also one of the most important events for the development of long-haul air travel. The Boeing 747 gave a much bigger client base access 
+                to flying because of its size—it was 2.5 times bigger [...] Over time, lower unit costs for intercontinental trips translated into more 
+                affordable air fares, enabling a larger portion of the middle class to fly."
                 <br>
-                However, in our Ukraine case study, we also saw a clear difference in how far refugees were willing (or able) to travel.
-                Of course, with the method we're using to calculate distances, the size of the origin country plays a big role. But Afghanistan
-                has a larger land area than Ukraine, and yet the average distance traveled by Ukrainian refugees was three times that of the Afghans.
-                We're starting to form a hypothesis that something has changed over the years, so let's investigate:
-                <br>
+                <span class="source">
+                    source: Aviation Week —
+                    <a href="https://aviationweek.com/air-transport/aircraft-propulsion/how-boeings-747-revolutionized-air-travel">How Boeing's 747 Revolutionized Air Travel</a>
+                </span>
+            </p>
+            <p>
+                With the explosion of commercial flights from the 70s onwards, we suspect that refugees and asylum seekers may have had
+                more options to seek refuge further away from their home country, and that this may have contributed to the increase
+                in distance traveled observed in our dataset during this period.
+            </p>
+            <p>
+                In fact, according to
+                <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ec.europa.eu/research/participants/documents/downloadPublic%3FdocumentIds%3D080166e5c708ac28%26appId%3DPPGMS&ved=2ahUKEwjjut2YlbSUAxVphP0HHapEAaMQFnoECCAQAQ&usg=AOvVaw0h5kj5q7KLveiNTXl7aVML">
+                this paper from Cross Migration on Migration Infrastructure</a>, it would seem that flights actually tend to offer a safer way out 
+                for refugees to leave their country than before. "There are several means of transportation used by migrants including airplanes, coaches 
+                and trains, cars and taxis, ships, ferries, boats, rubber dinghies and even bicycles or donkeys. In recent decades, there has been a huge increase
+                in the number of carriers and in particular low budget carriers available to travelers and migrants. For the regular
+                passenger, journeys have become safer, faster, and more affordable, connecting more places than ever before."
+            </p>
+            <p>
+                In fact, flying became such a popular means of transport for migrants that, in 1987, countries had to introduce the
+                "Carrier Liability Act", which penalizes and fines airlines for transporting passengers without documentation. Over the decades there have 
+                been several iterations of this act. It was the origin of the border controls we see today.
+                <a href="https://academic.oup.com/ijrl/article-abstract/1/4/481/1598176?redirectedFrom=fulltext">This journal article</a>,
+                a collaboration between Oxford Law and UNHCR, gives a good overview of the history of this act and its consequences on
+                migration patterns.
+            </p>
 
-                <iframe src="visualizations/total_displaced_vs_average_distance_comparison.html" height="600"></iframe>
-
-                <p class="caption">
-                    The line shows average distance traveled by refugees to their destination country over time for all refugees and
-                    asylum seekers in the dataset. Distance is computed from centroid of Origin country to border of Destination country.
-                    The histogram show the total number of people displaced for each year.
-                </p>
-
-                <p>
-                    We notice three distinct "steps" in this plot.
-                    <br>
-                    • <strong>Between 1962 and around 1973:</strong> refugees and asylum seekers would travel between 500 and 900 km to seek safety.
-                    <br>
-                    • <strong>Between 1973 and 1989:</strong> we observe a progressive increase in distance travelled, going from around 700 km to nearly 4000 km.
-                    <br>
-                    • <strong>From 1989 to present day:</strong> the average per year seems to have stagnated and varies slightly from 4000 km to 4500 km.
-                </p>
-
-                <p>
-                    What could explain this increase in distance traveled between 1973 and 1989 in particular?
-                    <br>
-                    We initially suspected this to be correlated to the sheer increase of data, but we think we can rule that out after adding the total displacement
-                    to the graph. There seems to be no obvious correlation between an increase in displacement data and distance traveled. But then, what could it be?
-                </p>
-
-                <h3 class="h3">
-                    Revolution of commercial flights in the 70's
-                </h3>
-
-                <p>
-                    Back in the 50's and 60's commercial long haul flights were not yet widely available, and international travel
-                    was essentially for business travelers and the wealthy percentage of society. "A coast-to-coast round trip cost
-                    around $260, about half of the price of a new automobile." says
-                    <a href="https://airandspace.si.edu/explore/stories/evolution-commercial-flying-experience">
-                        The National Air and Space Museum</a>.
-                    "Yet, new carriers emerged, and new technology began to revolutionize civil aviation."
-                    <br>
-                    <br>
-                    Long-haul flights became more accessible from 1969 when a new wide-body "jumbo jets" Boeing 747 was introduced
-                    on the market. Since the aircraft was much larger than previous models, it significantly increased passenger
-                    capacity and lowered costs. What used to be an elite luxury became more affordable for middle class compared to previous decades.
-
-                    "This was not only a milestone in aircraft manufacturing, but also one of the most important events for the
-                    development of long-haul air travel. The Boeing 747 gave a much bigger client base access to flying because
-                    of its size—it was 2.5 times bigger [...] Over time, lower unit costs for intercontinental trips translated into
-                    more affordable air fares, enabling a larger portion of the middle class to fly."
-                    <span class="source">
-                        source: Aviation Week -
-                        <a href="https://aviationweek.com/air-transport/aircraft-propulsion/how-boeings-747-revolutionized-air-travel">
-                        How Being's 747 Revolutionized Air Travel</a>
-                    </span>
-                </p>
-                <p>
-                    With the explosion of commercial flights from the 70's onwards, we suspect that refugees and asylum seekers may 
-                    have had more options to seek refuge further away from their home country, and that this may have contributed 
-                    to the increase in distance traveled observed in our dataset during this period.
-                    <br>
-                    <br>
-                    In fact, according to
-                    <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ec.europa.eu/research/participants/documents/downloadPublic%3FdocumentIds%3D080166e5c708ac28%26appId%3DPPGMS&ved=2ahUKEwjjut2YlbSUAxVphP0HHapEAaMQFnoECCAQAQ&usg=AOvVaw0h5kj5q7KLveiNTXl7aVML">
-                        this paper from Cross Migration on Migration Infrastructure</a>
-                    , it would seem that flights
-                    actually tend to offer a safer way out for refugees to leave their country than before.
-                    "There are several means of transportation used by migrants including airplanes, coaches and trains, cars
-                    and taxis, ships, ferries, boats, rubber dinghies and even bicycles or donkeys. In recent decades, there has
-                    been a huge increase in the number of carriers and in particular low budget carriers available to travelers
-                    and migrants. For the regular passenger, journeys have become safer, faster, and more affordable,
-                    connecting more places than ever before."
-                </p>
-                    In fact flying became such a popular mean of transport for migrants that, in 1987, countries had to introduce the 
-                    "Carrier liability Act", which penalizes and fines airlines for transporting passengers without documentation. 
-                    Over the decades there have been several iterations of this act. It was the origin of the border controls we see today.
-                    <a href="https://academic.oup.com/ijrl/article-abstract/1/4/481/1598176?redirectedFrom=fulltext">
-                    This journal article</a>
-                    , a collaboration between Oxford Law and UNHCR, gives a good overview of the history of this act
-                    and its consequences on migration patterns.
-
-                <br>
-                <br>
-
-
-                <h2 class="sub_title">
-                    CONCLUSION:
-                </h2>
-                In conclusion, we can say that proximity does seem to be a key factor in the choice of destination for refugees and asylum seekers,
-                but that this has evolved over time. In the earlier decades of our dataset, the tendency for refugees to stay in neighbouring contries
-                was much stronger, while in more recent decades, they have been more willing (or able) to travel further away. Since the early 1970's 
-                displaced people have had a tendency to travel further as time goes by. The international yearly average plateaus from 1989 at around 
-                4400 km. traveled to seek refuge. We suspect that the revolution of commercial long haul flights in the 70's may have played 
-                a role in this shift, by providing refugees with more options to seek refuge further away from their home country.
-                <br>
-                <br>
-                However, we should also be careful not to attribute complex social phenomena to single causes. While we are confident that the increased
-                availability of commercial flights is an important contributor, we also suspect that language, culture, political and economic stability
-                and immigration policies of the destination country may also play a role in the choice of destination for refugees and asylum seekers,
-                and that these factors have also evolved over time. These factors are difficult to quantify in terms of hard numerical data, but would be very
-                interesting to investigate in further analysis.
+            <div class="section-break">
+                <h2 class="section-title">Conclusion</h2>
+            </div>
+            <h3>In summary</h3>
+            <p>
+                In conclusion, we can say that proximity does seem to be a key factor in the choice of destination for refugees and
+                asylum seekers, but that this has evolved over time. In the earlier decades of our dataset, the tendency for refugees
+                to stay in neighbouring countries was much stronger, while in more recent decades they have been more willing (or able)
+                to travel further away. Since the early 1970s displaced people have had a tendency to travel further as time goes by.
+                The international yearly average plateaus from 1989 at around 4,400 km traveled to seek refuge. We suspect that the
+                revolution of commercial long-haul flights in the 70's may have played a role in this shift, by providing refugees with
+                more options to seek refuge further away from their home country.
+            </p>
+            <p>
+                However, we should also be careful not to attribute complex social phenomena to single causes. While we are confident 
+                that the increased availability of commercial flights is an important contributor, we also suspect that language, culture, 
+                political and economic stability and immigration policies of the destination country may also play a role in the choice of 
+                destination for refugees and asylum seekers, and that these factors have also evolved over time. These factors are difficult to 
+                quantify in terms of hard numerical data, but would be very interesting to investigate in further analysis.
             </p>
             <p>
                 A behind-the-scenes look into the data analysis used for this article, including source code, can be found here:
-                <br>
-                <a href="https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb">
-                    https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb
-                </a>
+                <a href="https://github.com/TishDuc/TishDuc.github.io/blob/main/Displacements_Final_Project/Explainer.ipynb">Explainer.ipynb</a>.
             </p>
-        </section>
+        </div>
 
     </div>
+
+    <script>
+        // 1) Activate the matching fixed graphic for whichever scene currently
+        //    occupies the central band of the viewport. If NO scene occupies it
+        //    (we are in the intro or the conclusion), hide every graphic.
+        const visibleScenes = new Set();
+
+        // Lazy-load: replace iframe data-src with src on first activation.
+        function hydrateGraphic(sceneEl) {
+            const id = sceneEl && sceneEl.dataset.graphic;
+            const g = id && document.getElementById(id);
+            if (!g) return;
+            const iframe = g.querySelector('iframe[data-src]');
+            if (iframe) {
+                iframe.src = iframe.dataset.src;
+                iframe.removeAttribute('data-src');
+            }
+        }
+
+        const sceneIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    visibleScenes.add(entry.target);
+                    hydrateGraphic(entry.target);
+                } else {
+                    visibleScenes.delete(entry.target);
+                }
+            });
+
+            const allGraphics = document.querySelectorAll('.scene-graphic');
+            if (visibleScenes.size === 0) {
+                allGraphics.forEach(g => g.classList.remove('is-active'));
+                return;
+            }
+            // Pick the scene closest to viewport center as the active one.
+            const mid = window.innerHeight / 2;
+            let active = null;
+            let bestDist = Infinity;
+            visibleScenes.forEach(s => {
+                const r = s.getBoundingClientRect();
+                const center = (r.top + r.bottom) / 2;
+                const d = Math.abs(center - mid);
+                if (d < bestDist) { bestDist = d; active = s; }
+            });
+            const activeId = active && active.dataset.graphic;
+            const activeLayout = (active && active.dataset.layout) || 'center';
+            allGraphics.forEach(g => {
+                const on = g.id === activeId;
+                g.classList.toggle('is-active', on);
+                // keep only the layout class of the currently active scene
+                g.classList.remove('layout-center', 'layout-left', 'layout-right');
+                if (on) g.classList.add('layout-' + activeLayout);
+            });
+        }, {
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
+        });
+        document.querySelectorAll('.scene').forEach(s => sceneIO.observe(s));
+
+        // 2) Fade individual text steps in/out as they pass through the viewport.
+        const stepIO = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                } else {
+                    entry.target.classList.remove('is-active');
+                }
+            });
+        }, {
+            rootMargin: '-30% 0px -30% 0px',
+            threshold: 0
+        });
+        document.querySelectorAll('.step, .section-title, .case-study-title, .case-study-intro, .case-study-source').forEach(s => stepIO.observe(s));
+    </script>
 
 </body>
 
