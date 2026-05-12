@@ -327,9 +327,16 @@
                 The UNHCR publishes their data about forcibly displaced people and updates it every six months. We are going to dive into one of their datasets:
                 the <a href="https://www.unhcr.org/refugee-statistics/insights/explainers/forcibly-displaced-flow-data.html">
                 UNHCR Forced Displacement Flow Dataset</a>, which tracks international displacements around the world, from 1962 to 2025.
-                First, we'll analyze the data to identify the biggest refugee crises in the 64-year period we have data for, followed by a
-                dive into three crises from different decades to see whether there might be differences between being a refugee in the 1980s
-                versus 2020s.
+                <br>
+                <br>
+                In this study we'll specifically look at where refugees and Asylum seekers go, and how far they travel. In other words, when forced to flee 
+                their country, what are the distances traveled to reach safety?
+
+                We will start with a general analysis to give the reader context, and then study displacement patterns of three crisis: Afhganistan (1979-1989), 
+                Rwanda (1994-1996), and Ukraine (2022-2025). We'll look at the average distances traveled for each and see if, and how, ther are correlated to flows.
+                Those three conflicts affect different decades and regions of the world, so we aim to see if there are any differences in displacement 
+                patterns across time and space.
+
             </p>
             <p>
                 A behind-the-scenes look into the data analysis used for this article, including source code, can be found here:
@@ -354,9 +361,10 @@
                     <div class="pros-box">
                         <h2>PROS</h2>
                         <ul>
-                            <li>Covers a long time period (1962-2025)</li>
+                            <li>Covers a long time period, 64 years (1962-2025)</li>
                             <li>Covers 216 countries</li>
                             <li>Reliable source (UNHCR)</li>
+                            <li>The data is largely complete and clean</li>
                         </ul>
                     </div>
 
@@ -364,6 +372,7 @@
                         <h2>LIMITATIONS</h2>
                         <ul>
                             <li>Only tracks international flows</li>
+                            <li>Few datapoints the first few years, which limits pattern observation</li>
                             <li>Some entries have "unknown" or "stateless" origin</li>
                             <li>We can only study officially recorded displacements</li>
                             <li>Flows are aggregated year-by-year</li>
@@ -388,7 +397,9 @@
 
         <section class="text">
             <p>
-                Now, let's dive in! We begin with a flow map of all the data for the whole period:
+                Now, let's dive in! We begin with a flow map of all the data for the whole period. We invite the reader to 
+                familiarize themselves with the map and explore the different flows. You can select specific years to see 
+                how the flows evolved over time, and hover over the different countries and arrows to see exact numbers.
             </p>
             <iframe src="visualizations/Top_100_displacements_flow_map.html" height="600"></iframe>
             <p class="caption">
@@ -397,28 +408,30 @@
                 country gradients, but only the 100 largest flows for each year are indicated with arrows. The timeline at the
                 bottom allows you to select a specific year and see the flows for that year.
             </p>
+            <!---------------------------------------------->
             <p>
-                It's easy to see that the number of displaced people has been increasing during the timeframe, and that they come
-                from increasingly diverse backgrounds. You can see some of the major conflicts of recent history: Afghanistan,
-                Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
-                of news coverage about some of them, and others may have flown under your radar. So, instead of looking for
-                crises we already recognize, we'll let the data tell us when and where the crises occurred.
+                By scrolling through the years, it becomes easy to observe the increase in both the amount of data and the number of flow lines. 
+                The number of registered displaced people grows over time, while their geographic origins also become increasingly diverse.
+                You can see some of the major conflicts of recent history mapped out quite clearly: 
+                Vietnam, Afghanistan, Syria, Sudan, Ukraine, Venezuela, Myanmar, etc. Depending on where you live in the world, you may have seen a lot
+                of news coverage about some of them, and others may have flown under your radar. So, instead of only manually looking for
+                crises we recognize, we'll let the data tell us when and where the crises occurred.
             </p>
             <img src="Displacements_Final_Project/Graphs%20and%20visualizations/top_10_displacement_episodes.svg" />
             <p class="caption">
-                Top 10 displacement episodes from 1962-2025, ranked by total number of people displaced during the episode. Each
-                episode is defined as a continuous period of time with an outgoing flow of displaced people above the median value
-                for that country, with a lower threshold of at least 10,000 people displaced per year.
+                Top 12 displacement crisis from 1962-2025, ranked by total number of people displaced during the episode. Each row
+                is defined as a continuous period of time with an outgoing flow of displacements above the median value
+                for that country (with a lower threshold of at least 10,000 people per year).
             </p>
             <p>
-                The graph shows that the top 10 episodes all occurred after 1977, and that the largest episode was the Syrian Civil War,
-                with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice because we detected two separate
-                crisis episodes corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021 (note
-                that displacement flows don't necessarily line up exactly with the conflict periods).
+                From our dataset, the graph shows the top 12 episodes all occurred after 1977. Our largest recorded episode is the Syrian Civil War,
+                with over 9 million people displaced between 2011 and 2025. Afghanistan appears twice in our chart, because we detected two separate
+                crisis episodes, corresponding roughly to the Soviet-Afghan war of 1979-1989, and the US-led invasion of 2001-2021. With this example, 
+                we'll note that displacement flows don't necessarily line up exactly with the conflict periods.
                 <br>
-                Next, we'll look at three of these episodes in more detail. We'll choose crises from different decades to see if there
-                are any differences in the patterns of displacement over time, and from different regions to ensure a diverse sample.
-                The three cases studies we've chosen are: Afghanistan (1980-1988), Rwanda (1994-1996), and Ukraine (2022-2025).
+                <br>
+                In this next section, we'll study three of these episodes in more detail, and have a look at where refugees and asylum seekers flee to. 
+                Let's study distances traveled and see if there are any differences in the patterns of displacement across time.
             </p>
         </section>
 
@@ -494,8 +507,7 @@
                     2) The nearby countries of Iran and Pakistan standing out in dark red, accepting the vast majority of Afghan
                     refugees.
                     <br>
-                    3) That the rest of the world seems to be turning a blind eye to the crisis. Other than Pakistan and
-                    Iran, very few countries took any refugees at all.
+                    3) A few other countries took in the other refugees, but they are in very small amounts
                 </p>
 
                 <iframe src="visualizations/sankey_afg_1980_1988.html" height="550"></iframe>
@@ -504,9 +516,14 @@
                 </p>
 
                 <p>
-                    The sankey diagram above confirms just how much of the refugee flow from Afghanistan during this period was concentrated
+                    The sankey diagram above confirms just how much of the refugee flow from Afghanistan was concentrated
                     in just two countries, Pakistan and Iran. Pakistan took the most at almost 3.2 million, followed by Iran at nearly 2.5 million,
-                    and Germany comes in third with only 21,743.
+                    and the ext follow up is Germany, in third  with only 21.743. Denmark at took in 272 people.
+
+                    The distances in this Sankey plot (and the Bubble plot that follows) are calculated from the geographic center of Afghanistan 
+                    to the border of the recipient country. In this chart, we begin to see the relationship between distance and refugee 
+                    volume. The two countries that received the largest number of refugees are also the geographically closest to Afghanistan, 
+                    with Pakistan's border located 319 km away, and Iran's 405 km away. 
                 </p>
 
                 <p>
@@ -521,18 +538,21 @@
                 </p>
 
                 <p>
-                    An important disclaimer to the bubble chart above is that we don't know exactly how far each refugee actually traveled. Instead,
-                    we took the distance from the geographic center of the origin country (Afghanistan in this case), and calculated the distance to
-                    the border of the recipient country. This is a very rough approximation, and it doesn't take into account the fact that refugees
-                    may have traveled to different parts of the destination country, or that they may have taken indirect routes to get there. However,
-                    it still gives us a general idea of the relationship between distance and number of refugees.
+                    An important disclaimer in computing distances traveled is that we don't know exactly how far each refugee actually traveled. We can only 
+                    compute rough approximation, and it doesn't take into account the fact that refugees may have traveled to different parts of 
+                    the destination country, or that they may have taken indirect routes to get there. However,it still gives us a general idea of 
+                    the relationship between distance and number of refugees.
                     <br>
                     <br>
-                    We see the bubbles clustered on the left-hand side of the chart, which means most recipient countries were geographically nearby.
-                    We've calculated that Afghan refugees in the period 1980-1988 traveled an average 383 kilometers to reach safety.
-                    Again, we see Pakistan and Iran completely dominate. A few European countries also took in some refugees, but the numbers are
-                    almost a rounding error compared to the nearly 5.7 million that the neighbouring countries received.
+                    We see the bubbles clustered on the left-hand side of the chart, which shows again most recipient countries were geographically nearby.
+                    Again, we see Pakistan and Iran completely dominate. A few European countries also appear, but the numbers are small compared to the 
+                    whopping 5.7 million that the neighbouring countries received.
                 </p>
+                
+                <div class="distance_box">
+                    Our weighted calculations estimate that Afghan refugees in the period 1980-1988 traveled an average 383 kilometers to reach safety.
+                </div>
+
         </section>
 
         <section class="text">
@@ -541,8 +561,8 @@
             </h2>
             <p>
                 The Rwandan genocide, also known as the Tutsi genocide, occurred from 7 April to 19 July 1994 during the Rwandan Civil War.
-                Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically killed by Hutu militias.
-                An estimated 800,000 Rwandans were killed.
+                Over a span of around 100 days, members of the Tutsi ethnic group, as well as some moderate Hutu and Twa, were systematically 
+                killed by Hutu militias. An estimated 800,000 Rwandans were killed.
                 <span class="source">
                     source: BBC -
                     <a href="https://www.bbc.com/news/world-africa-26875506">
@@ -556,10 +576,9 @@
                         Divided by Ethnicity
                     </a>
                 </span>
-                The genocide was marked by extreme violence, with victims
-                often murdered by neighbours, and widespread sexual violence. It ended when the Tutsi-led Rwandan Patriotic Front (RPF) won the civil war,
-                but refugees continued to leave the country in the following years. The genocide was followed by the First Congo War in 1996, a conflict
-                between the new RPF government and the Democratic Republic of the Congo.
+                The genocide was marked by extreme violence, with victims often murdered by neighbours, and widespread sexual violence. It ended when 
+                the Tutsi-led Rwandan Patriotic Front (RPF) won the civil war, but refugees continued to leave the country in the following years. 
+                The genocide was followed by the First Congo War in 1996, a conflict between the new RPF government and the Democratic Republic of the Congo.
             </p>
             <iframe src="visualizations/rwanda_flows.html" height="600"></iframe>
             <p class="caption">
@@ -569,17 +588,21 @@
             <p>
                 The map shows a massive exodus of more than 2 million people in 1994, the year the genocide occurred. 1995 was a relatively quiet year,
                 although we still see more than 34,000 people depart to Burundi. Then, when the First Congo War breaks out in 1996, we see another
-                85,000 people leaving.
+                85,000 people leaving. We invite the reader to explore the map and hover over the different flows to see the exact numbers.
             </p>
             <iframe src="visualizations/sankey_rwa_1994_1996.html" height="550"></iframe>
             <p class="caption">
                 Sankey diagram showing the flow of refugees from Rwanda to different destination countries between 1994 and 1996.
             </p>
             <p>
-                As with the Soviet-Afghan war, we see that Rwandan refugees overwhelmingly fled to neighbouring countries. Over the course of the two conflicts,
-                1.4 million Rwandans fled to the Democratic Republic of the Congo, 700,000 fled to Tanzania, and 294,000 fled to Burundi. A few other countries
-                make the list, most of which are African countries (Uganda, South Africa, Malawi, and the Central African Republic), but also Belgium, Germany,
-                and France. Of the European countries, Belgium was the biggest recipient, but with only 1,369 Rwandans.
+                Looking at this graph, we notice that Rwandan refugees overwhelmingly fled to neighbouring countries. Over the studies period of time
+                1.4 million Rwandans fled to the Democratic Republic of the Congo, 700,000 fled to Tanzania, and 294,000 fled to Burundi. We note that
+                Rwanda is only 70km away from the Tanzanian border, only 84km away from DRCongo, and only 44km away from Burundi
+                
+                A few other countries make the list, most of which are African countries (Uganda, South Africa, Malawi, and the Central 
+                African Republic), some located ober 800 km awar from Rwanda. Of the European countries, Belgium was the biggest recipient, 
+                being over 6.000 km away they oinly took in 1,369 Rwandans. 
+
             </p>
 
             <iframe src="visualizations/rwanda_distance_vs_count.html" height="650"></iframe>
@@ -589,10 +612,15 @@
                 Bigger bubbles indicate a larger number of refugees. You can hover over each bubble to see the exact distance and number of refugees.
             </p>
             <p>
-                For Rwanda, the picture is much the same as for Afghanistan: the recipient countries overwhelmingly cluster on the left-hand side. Rwandan
-                refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and the vast size of
+                For Rwanda and it's neighboring countries, the picture is similar to the one painted for Afghanistan: the recipient (and neighboring) countries 
+                overwhelmingly cluster on the left-hand side. Rwandan refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and the vast size of
                 the DR Congo and Tanzania, we consider the rough average somewhat less reliable for Rwanda.
             </p>
+
+        <div class="distance_box">
+         Rwandan refugees in this period traveled an average of 83 kilometers to reach safety. However, given the small size of Rwanda and the 
+         vast size of the DR Congo and Tanzania, we consider the rough average somewhat less reliable for Rwanda.
+        </div>
 
         </section>
 
@@ -740,7 +768,7 @@
                     <br>
                     <br>
                     In fact, according to
-                    <a href="file:///Users/tish/Downloads/Attachment_0.pdf">
+                    <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ec.europa.eu/research/participants/documents/downloadPublic%3FdocumentIds%3D080166e5c708ac28%26appId%3DPPGMS&ved=2ahUKEwjjut2YlbSUAxVphP0HHapEAaMQFnoECCAQAQ&usg=AOvVaw0h5kj5q7KLveiNTXl7aVML">
                         this paper from Cross Migration on Migration Infrastructure</a>
                     , it would seem that flights
                     actually tend to offer a safer way out for refugees to leave their country than before.
