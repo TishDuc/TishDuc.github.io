@@ -121,6 +121,16 @@
             transition: color 0.2s ease;
         }
 
+        h3 {
+            font-family: Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: #333333;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
         a:hover,
         section p a:hover {
             color: var(--accent-hover);
@@ -138,6 +148,29 @@
 
         iframe {
             box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .distance_container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+
+            margin: 30px 0;
+
+            flex-wrap: wrap;
+        }
+
+        .distance_box {
+            padding: 14px 28px;
+
+            border: 2px solid #adadad;
+            border-radius: 12px;
+
+            background-color: #fafafa;
+
+            text-align: center;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
 
@@ -738,17 +771,124 @@
                 People travelled "this far" to seek refuge
             </p>
         </section>
-
+    <!-------------------------------------------- DISCUSSION / CONCLUSION ----------------------------------------------->
         <section class="text">
+
+
+                <h2 class="sub_title">
+                    DISCUSSION:
+                </h2>
+                <br>
+
+                <h3 class="h3">
+                    What we saw so far:
+                </h3>
+
             <p>
-                DISCUSSION/CONCLUSION:
+                After taking a closer look at our case studies, we can see a clear pattern emerging. 
+                Not too surprisingly, people seem to "favor" proximity in times of crisis. In all three cases the immidiate neighbouring 
+                countries intook the vast majority of displaced people. On average the furthest a country is from the observed conflict,
+                the less refugees tend to seek refuge there. This was made clear by the buble plots in each of the case studies.
                 <br>
                 <br>
-                So where do people go?
+                Yet have the distances traveled changed over time? 
+                we observed different averages , and noted that with our computation methode, size of origin country comes into play. 
+                <br>            
+                    <div class="distance_container">
+
+                        <div class="distance_box">
+                            Afghanistan — 374.04 km traveled
+                        </div>
+
+                        <div class="distance_box">
+                            Rwanda — 83.30 km traveled
+                        </div>
+
+                        <div class="distance_box">
+                            Ukraine — 1172.42 km traveled
+                        </div>
                 <br>
-                From our data it sure looks like proximity is a main factor. immediate neighbouring countries to a crisis are recurrently
-                tmapped out in red on our maps, showing that they receive a significant number of displacements.
+                To get a more general feel, we plotted the yearly "Average distance traveled" accross out dataset and found the following:
                 <br>
+                <iframe src="visualizations/average_distance_to_border_over_time.html" height="600"></iframe>
+                <p class="caption">
+                The average distance traveled by refugees to their destination country over time. 
+                Distance is computed from centroid of Origin country to border of Destination country.
+                </p>
+                <p>
+                    From our analysis and from the UNHC dataset, we notice three distinct "steps" in this plot.
+                    <br>
+                    • <strong>Between 1962 and around 1973:</strong> refugees and asylum seekers would travel between 500 and 900 km to seek safety.
+                    <br>
+                    • <strong>Between 1973 and 1989:</strong> we observe a progressive increase in distance travelled, going from around 700 km to nearly 4000 km.
+                    <br>
+                    • <strong>From 1989 to present day:</strong> that average per year seems to have stagnated and varies slightly from 4000 km to 4500 km.
+                </p>
+                <p>
+                    What could explain this increase in distance travelled between 1973 and 1989 in particular?
+                    <br>
+                    We initially suspected this to be correlated to the sheer increase of data and plotted that as well in the back end.
+                    We found no obvious correlation between increase in data and increase in distance traveled, 
+                    so we can rule out this explanation.
+                    <br>
+                    Did then means of transportation such as airplanes become more accessible
+                    to the public during this 16-year period?
+                </p>
+
+        <h3 class="h3">
+            Revolution of commertial flights in the 70's
+        </h3>
+
+                <p>
+                    Back in the 50's and 60's commertial long haul flights were not yet widely available, and international travel 
+                    was essentially for business travelers and the wealthy percentage of society. "A coast-to-coast round trip cost 
+                    around $260, about half of the price of a new automobile." says 
+                    <a href="https://airandspace.si.edu/explore/stories/evolution-commercial-flying-experience"> 
+                        The National Air and Space Museum</a>
+                    "Yet, New carriers emerged, and new technology began to revolutionize civil aviation."
+                    <br>
+                    <br>
+                    Long-haul flights became more accessible from 1969 when a new wide-body "jumbo jets" Boeing 747 was introduced 
+                    on the market. Since the aircraft was much larger than previous models, it significantly increased passenger 
+                    capacity and lowered costs. What used to be an elite luxury became more affordable for middle class compared to previous decades.
+
+                    "This was not only a milestone in aircraft manufacturing, but also one of the most important events for the 
+                    development of long-haul air travel. The Boeing 747 gave a much bigger client base access to flying because 
+                    of its size—it was 2.5 times bigger [...] Over time, lower unit costs for intercontinental trips translated into 
+                    more affordable air fares, enabling a larger portion of the middle class to fly"
+                    <a href="https://aviationweek.com/air-transport/aircraft-propulsion/how-boeings-747-revolutionized-air-travel"> 
+                        Aviation Week</a>
+
+                </p>
+                    With the explosion of commertial flights from the 70's onwards, we suspect that refugees and asylum seekers may 
+                    have had more options to seek refuge further away from their home country, and that this may have contributed 
+                    to the increase in distance traveled observed in our dataset during this period.
+
+                    In fact, according to this paper from Cross Migration on Migration INfrastructure, it would seem that flights 
+                    actually tend to offer a safer way out for refugess to leave their country than before.
+                    <a href="file:///Users/tish/Downloads/Attachment_0.pdf"> 
+                        Cross Migration paper</a>
+                    "There are several means of transportation used by migrants including airplanes, coaches and trains, cars
+                    and taxis, ships, ferries, boats, rubber dinghies and even bicycles or donkeys. In recent decades, there has
+                    been a huge increase in the number of carriers and in particular low budget carriers available to travellers
+                    and migrants. For the regular passenger, journeys have become safer, faster, and more affordable
+                    connecting more places than ever before."
+
+
+
+
+
+
+
+                <h2 class="sub_title">
+                    CONCLUSION:
+                </h2>
+
+
+                <br>
+                -------------------------------------------------------<br>
+                draft zone<br>
+                -------------------------------------------------------<br>
                 <br>
                 A recurring pattern is also the attraction for Europe. further away, sometimes half way accross the planet
                 (ex from Rwanda), and yet people seek refuge in Europe, and in particular in Germany, France, UK, Spain etc.
@@ -765,7 +905,7 @@
                 <br>
                 <br>
                 <br>
-                OPENING TO FURTHER RESEARCH
+                OPENING REMARKS:
                 <br>
                 <br>
                 In this article we focused refugees and asylum seekers movements and whether and whether their patterns evolved over time.
