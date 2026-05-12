@@ -233,12 +233,24 @@
         }
 
         /* When a plot has its own caption inside the white frame, reserve
-           space at the bottom and place the caption there. The plot stays
-           vertically centred within the area above the caption. */
-        .scene-graphic.layout-left:has(.graphic-caption) iframe { height: calc(100% - 60px); }
-        .scene-graphic.layout-left:has(.graphic-caption) iframe.shrink-fit { height: calc((100% - 60px) * 1.43); }
+           space at the bottom AND mirror that space at the top so the plot
+           is visually centred between top of box and the caption. Bubble
+           charts (shrink-fit) stay anchored to the top — they rely on
+           transform-origin: top-left, so vertical centring breaks them. */
+        .scene-graphic.layout-left:has(.graphic-caption) iframe {
+            height: calc(100% - 110px);
+            margin-top: 25px;
+        }
+        .scene-graphic.layout-left:has(.graphic-caption) iframe.shrink-fit {
+            height: calc((100% - 60px) * 1.43);
+            margin-top: 0;
+        }
+        .scene-graphic.layout-left:has(.graphic-caption) iframe.bubble-fit {
+            height: calc((100% - 60px) * 1.61);
+            margin-top: 0;
+        }
         .scene-graphic.layout-left:has(.graphic-caption) img {
-            max-height: calc(78vh - 60px);
+            max-height: calc(78vh - 110px);
             top: calc(50% - 30px);
         }
 
@@ -273,6 +285,15 @@
             width: 143%;
             height: 143%;
             transform: scale(0.7);
+            transform-origin: top left;
+        }
+
+        /* Same idea as shrink-fit but scaled to 0.9 (less aggressive zoom-out),
+           used by the bubble distance charts. */
+        .scene-graphic iframe.bubble-fit {
+            width: 161%;
+            height: 161%;
+            transform: scale(0.62);
             transform-origin: top left;
         }
 
@@ -486,7 +507,8 @@
                 originally only intended to provide temporary assistance to European refugees. However, over the years, the UNHCR's
                 mandate has expanded to include people of all nationalities and in all regions of the world. Today, the UNHCR provides
                 assistance to millions of refugees, asylum seekers, internally displaced people, and stateless individuals around the
-                world.
+                world. The UNHCR's work includes providing emergency shelter, food, water, and medical care to displaced people, as
+                well as advocating for their rights and working to find durable solutions to their displacement.
             </p>
             <p>
                 The UNHCR publishes their data about forcibly displaced people and updates it every six months. We are going to dive
@@ -769,9 +791,10 @@
                     <div class="step">
                         <p>
                             The conflict has resulted in widespread destruction, loss of life, and millions forced to flee. Of the three
-                            case studies, this is by far the one that got the most media coverage. The conflict is ongoing, so we don't
-                            have the whole story yet, but we can already see some interesting differences in the patterns of displacement
-                            compared to the previous two case studies.
+                            case studies, this is by far the one that got the most media coverage, and we imagine that most readers of
+                            this article have some degree of familiarity with it. The conflict is ongoing, so we don't have the whole
+                            story yet, but we can already see some interesting differences in the patterns of displacement compared to
+                            the previous two case studies.
                         </p>
                     </div>
                     <div class="step">
@@ -856,7 +879,8 @@
                         </ul>
                         <p>
                             What could explain this jump between 1973 and 1989? We initially suspected it to be correlated to the sheer
-                            increase of data, but found no obvious correlation — so we can rule that out. What else could it be?
+                            increase of displacement data, but after overlaying total displacement on the graph we found no obvious
+                            correlation — so we can rule that out. What else could it be?
                         </p>
                     </div>
                 </div>
@@ -888,7 +912,7 @@
                 </div>
             </div>
             <div class="scene-graphic" id="g-afg-dist">
-                <iframe data-src="visualizations/afghanistan_distance_vs_count.html" title="Distance traveled vs number of refugees from Afghanistan" scrolling="no" class="shrink-fit"></iframe>
+                <iframe data-src="visualizations/afghanistan_distance_vs_count.html" title="Distance traveled vs number of refugees from Afghanistan" scrolling="no" class="bubble-fit"></iframe>
                 <div class="graphic-caption">
                     Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Afghanistan to a specific destination country over the conflict period. Bigger bubbles indicate more refugees. Hover over a bubble for exact values.
                 </div>
@@ -903,7 +927,7 @@
                 </div>
             </div>
             <div class="scene-graphic" id="g-rwa-dist">
-                <iframe data-src="visualizations/rwanda_distance_vs_count.html" title="Distance traveled vs number of refugees from Rwanda" scrolling="no" class="shrink-fit"></iframe>
+                <iframe data-src="visualizations/rwanda_distance_vs_count.html" title="Distance traveled vs number of refugees from Rwanda" scrolling="no" class="bubble-fit"></iframe>
                 <div class="graphic-caption">
                     Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Rwanda to a specific destination country over the conflict period.
                 </div>
@@ -918,15 +942,15 @@
                 </div>
             </div>
             <div class="scene-graphic" id="g-ukr-dist">
-                <iframe data-src="visualizations/ukraine_distance_vs_count.html" title="Distance traveled vs number of refugees from Ukraine" scrolling="no" class="shrink-fit"></iframe>
+                <iframe data-src="visualizations/ukraine_distance_vs_count.html" title="Distance traveled vs number of refugees from Ukraine" scrolling="no" class="bubble-fit"></iframe>
                 <div class="graphic-caption">
                     Bubble chart showing the relationship between distance traveled and number of refugees. Each bubble represents a flow of refugees from Ukraine to a specific destination country over the conflict period.
                 </div>
             </div>
             <div class="scene-graphic" id="g-avg-dist">
-                <iframe data-src="visualizations/average_distance_to_border_over_time.html" title="Average distance traveled by refugees over time, 1962–2025" scrolling="no" class="shrink-fit"></iframe>
+                <iframe data-src="visualizations/total_displaced_vs_average_distance_comparison.html" title="Average distance traveled and total displaced over time, 1962–2025" scrolling="no" class="shrink-fit"></iframe>
                 <div class="graphic-caption">
-                    Average distance traveled by refugees to their destination country over time, for all refugees and asylum seekers in the dataset. Distance is computed from the centroid of the origin country to the border of the destination country.
+                    The line shows the average distance traveled by refugees and asylum seekers to their destination country over time. Distance is computed from the centroid of the origin country to the border of the destination country. The histogram shows the total number of people displaced for each year.
                 </div>
             </div>
         </div>
